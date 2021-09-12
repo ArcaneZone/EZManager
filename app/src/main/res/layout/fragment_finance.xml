@@ -57,5 +57,14 @@
         android:layout_margin="16dp"
         app:srcCompat="@drawable/ic_plus_24"
         android:contentDescription="@string/add_new_customer" />
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnExportToExcel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="16dp"
+        app:srcCompat="@drawable/ic_export"
+        android:contentDescription="@string/export_to_pdf" />
 
 </RelativeLayout>

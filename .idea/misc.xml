@@ -4,7 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.22192028985507245" />
+        <entry key="app/src/main/res/layout/activity_splash.xml" value="0.223731884057971" />
+        <entry key="app/src/main/res/layout/fragment_add_new_transaction.xml" value="0.5" />
         <entry key="app/src/main/res/layout/fragment_delete_transaction.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_export_to_excel.xml" value="0.35833333333333334" />
         <entry key="app/src/main/res/layout/fragment_finance.xml" value="0.25" />
       </map>
     </option>
