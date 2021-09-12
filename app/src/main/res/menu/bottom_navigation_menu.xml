@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/customerDashboard"
+        android:title="customer"
+        android:icon="@drawable/ic_customer"
+        android:enabled="true"/>
+    <item
+        android:id="@+id/workerDashboard"
+        android:title="workers"
+        android:icon="@drawable/ic_worker"
+        android:enabled="true"/>
+    <item
+        android:id="@+id/financeDashboard"
+        android:enabled="true"
+        android:icon="@drawable/ic_finance"
+        android:title="finance"/>
+</menu>

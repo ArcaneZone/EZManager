@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:layout_marginHorizontal="5dp"
+    android:layout_marginVertical="10dp"
+    >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/transaction_title"
+        android:id="@+id/transactionTitle"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="20dp"
+        android:layout_gravity="start"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:id="@+id/transactionDate"
+        android:layout_marginBottom="30dp"
+        android:layout_marginStart="30dp"
+        android:text="@string/date"
+        android:textSize="15sp"
+        android:textStyle="italic" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:id="@+id/transactionAmt"
+        android:text="@string/_1000"
+        android:textStyle="bold"
+        android:layout_marginStart="250dp"
+        android:layout_marginTop="35dp"
+
+        />
+    <ImageButton
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_delete"
+        android:layout_gravity="center_vertical|end"
+        android:id="@+id/btnDeleteTransaction"
+        />
+
+
+</androidx.cardview.widget.CardView>
