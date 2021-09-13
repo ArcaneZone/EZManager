@@ -5,15 +5,12 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ezmanager.R
 import com.example.ezmanager.database.DatabaseHandler
 import com.example.ezmanager.model.Transaction
 import android.app.Activity
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
@@ -30,7 +27,7 @@ RecyclerView.Adapter<TransactionDashboardAdapter.ItemViewHolder>(){
         val transactionTitle:TextView=view.findViewById(R.id.transactionTitle)
         val transactionDate:TextView=view.findViewById(R.id.transactionDate)
         val transactionAmount:TextView=view.findViewById(R.id.transactionAmt)
-        val deleteTransaction:ImageButton=view.findViewById(R.id.btnDeleteTransaction)
+        val deleteTransaction:ImageView=view.findViewById(R.id.btnDeleteTransaction)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {

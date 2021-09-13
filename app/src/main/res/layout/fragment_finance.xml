@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragment.FinanceFragment">
+    tools:context=".fragment.FinanceFragment"
+    android:background="#000000">
 
     <RelativeLayout
         android:id="@+id/Chart"
@@ -13,16 +14,29 @@
         android:layout_marginHorizontal="10dp"
         android:layout_marginTop="20dp"
         android:background="@color/black">
+
         <TextView
+            android:id="@+id/txtXYz"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
-            android:text="Total Amount: $12000"
-            android:textColor="@color/white"
-            android:textSize="30dp"
-            android:id="@+id/txtTotalAmount"
-            android:layout_marginTop="30dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:layout_marginHorizontal="10dp"/>
+            android:text="Total Amount:"
+            android:textColor="@color/white"
+            android:fontFamily="@font/optimus_princeps_semi_bold"
+            android:textSize="30dp" />
+        <TextView
+            android:id="@+id/txtTotalAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_below="@+id/txtXYz"
+            android:layout_marginBottom="10dp"
+            android:text="$12000"
+            android:fontFamily="@font/optimus_princeps"
+            android:textColor="@color/white"
+            android:textSize="30dp" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="48dp"
@@ -30,6 +44,7 @@
             android:textColor="@color/white"
             android:layout_marginLeft="10dp"
             android:layout_gravity="bottom"
+            android:fontFamily="@font/optimus_princeps_semi_bold"
             android:layout_below="@id/txtTotalAmount"
             android:textSize="20dp"/>
 
@@ -39,26 +54,28 @@
             android:id="@+id/ll_buttons"
             android:orientation="horizontal"
             android:layout_alignParentBottom="true"
+            android:weightSum="10"
             >
         <Button
-            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_weight="5"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
             android:id="@+id/btnOpenBottomSheet"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:textColor="@color/teal_700"
             android:text="Add"
-            android:drawableLeft="@drawable/ic_plus_24"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
+            app:icon="@drawable/ic_plus_24"
             android:contentDescription="@string/add_new_customer"
-            app:srcCompat="@drawable/ic_plus_24" />
+            />
 
             <Button
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="history"
+                app:icon="@drawable/ic_history"
+                android:id="@+id/btnOpenFinanceHistory"
+                android:layout_weight="5"
                 />
         </LinearLayout>
 
@@ -88,7 +105,9 @@
         android:layout_alignParentBottom="true"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
         android:layout_marginEnd="16dp"
+
         android:layout_marginBottom="16dp"
         android:contentDescription="@string/export_to_pdf"
         app:srcCompat="@drawable/ic_export" />

@@ -2,7 +2,6 @@ package com.example.ezmanager.fragment
 
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,13 +32,13 @@ class DeleteTransactionFragment(private val deletedTransaction:Transaction) : Bo
 
         val db = DatabaseHandler(activity as Context)
 
-        val TransactionActivity=FinanceFragment(activity as Context)
+        val transactionActivity=FinanceFragment(activity as Context)
 
         btnOk.setOnClickListener {
             db.deleteTransaction(deletedTransaction)
             dismiss()
             requireActivity().supportFragmentManager.beginTransaction().apply {
-                replace(R.id.content,TransactionActivity)
+                replace(R.id.content,transactionActivity)
             }.commit()
             Toast.makeText(context, "removed ${deletedTransaction.title}", Toast.LENGTH_SHORT).show()
         }

@@ -11,16 +11,13 @@ import android.view.WindowManager
 import android.widget.Button
 import android.widget.TextView
 import androidx.annotation.RequiresApi
-import androidx.fragment.app.DialogFragment
 import com.example.ezmanager.R
 import com.example.ezmanager.database.DatabaseHandler
 import com.example.ezmanager.model.Transaction
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.textfield.TextInputLayout
 import java.text.SimpleDateFormat
-import java.time.LocalDate
 import java.time.LocalDateTime
-import java.time.LocalTime
 import java.util.*
 
 
@@ -47,7 +44,7 @@ class AddNewTransactionFragment : BottomSheetDialogFragment() {
         val newAmount: TextInputLayout =view.findViewById(R.id.textNewTransactionAmount)
         val newDate: TextView =view.findViewById(R.id.textNewTransactionDate)
         val openDatePicker: Button =view.findViewById(R.id.btnOpenDatePicker)
-        val TransactionActivity=FinanceFragment(activity as Context)
+        val transactionActivity=FinanceFragment(activity as Context)
         val db = DatabaseHandler(activity as Context)
 
         val addNewTransaction:Button=view.findViewById(R.id.btnAddNewTransaction)
@@ -77,7 +74,7 @@ class AddNewTransactionFragment : BottomSheetDialogFragment() {
             db.addTransaction(transaction)
             dismiss()
             requireActivity().supportFragmentManager.beginTransaction().apply {
-                replace(R.id.content,TransactionActivity)
+                replace(R.id.content,transactionActivity)
             }.commit()
         }
         return view
