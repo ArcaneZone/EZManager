@@ -7,13 +7,6 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteException
 import android.database.sqlite.SQLiteOpenHelper
 import com.example.ezmanager.model.Transaction
-import android.os.Environment
-import android.util.Log
-import java.io.File
-import java.io.FileInputStream
-import java.io.FileOutputStream
-import java.lang.Exception
-import java.nio.channels.FileChannel
 
 
 class DatabaseHandler(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,null,DATABASE_VERSION) {
@@ -109,4 +102,84 @@ class DatabaseHandler(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,
         }
         return totalSum
     }
+   /*
+    private fun ExportData(context: Context) {
+
+        //CHECK IF YOU HAVE WRITE PERMISSIONS OR RETURN
+        val permission = ActivityCompat.checkSelfPermission(
+            context,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+        )
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(context, "Storage permissions not granted", Toast.LENGTH_SHORT)
+                .show()
+            return
+        }
+
+//get database object
+        val database = this.writableDatabase
+
+//delete all entries in the second table
+        database.delete("Table2", null, null)
+
+//Create a cursor of the main database with your filters and sort order applied
+        val cursor: Cursor? = context.getContentResolver().query(
+            uri,
+            projections,
+            selection,
+            args,
+            sortOrder
+        )
+
+//loop through cursor and add entries from first table to second table
+        try {
+            while (cursor.moveToNext()) {
+                val ColumnOneIndex = cursor.getString(cursor.getColumnIndexOrThrow("COLUMN_ONE"))
+                val ColumnTwoIndex = cursor.getString(cursor.getColumnIndexOrThrow("COLUMN_TWO"))
+                val ColumnThreeIndex =
+                    cursor.getString(cursor.getColumnIndexOrThrow("COLUMN_THREE"))
+
+                //add entries from table one into the table two
+                val values = ContentValues()
+                values.put("TABLE2_COLUMN_1", ColumnOneIndex)
+                values.put("TABLE2_COLUMN_2", ColumnTwoIndex)
+                values.put("TABLE2_COLUMN_3", ColumnThreeIndex)
+                database.insert("table2", null, values)
+            }
+        } finally {
+            //close cursor after looping is complete
+            cursor.close()
+        }
+
+        //create a string for where you want to save the excel file
+        val savePath = Environment.getExternalStorageDirectory().toString() + "/excelfileTemp"
+        val file = File(savePath)
+        if (!file.exists()) {
+            file.mkdirs()
+        }
+        //create the sqLiteToExcel object
+        val sqLiteToExcel = SQLiteToExcel(getContext(), "databasefile.db", savePath)
+
+//use sqLiteToExcel object to create the excel file
+        sqLiteToExcel.exportSingleTable("table2", "excelfilename.xls", object : ExportListener {
+            override fun onStart() {}
+            override fun onCompleted(filePath: String) {
+                //now attach the excel file created and be directed to email activity
+                val newPath: Uri = Uri.parse("file://$savePath/excelfilename.xls")
+                val builder = VmPolicy.Builder()
+                StrictMode.setVmPolicy(builder.build())
+                val emailintent = Intent(Intent.ACTION_SEND)
+                emailintent.type = "application/vnd.ms-excel"
+                emailintent.putExtra(Intent.EXTRA_SUBJECT, "Subject")
+                emailintent.putExtra(Intent.EXTRA_TEXT, "I'm email body.")
+                emailintent.putExtra(Intent.EXTRA_STREAM, newPath)
+                startActivity(Intent.createChooser(emailintent, "Send Email"))
+            }
+
+            override fun onError(e: Exception) {
+                println("Error msg: $e")
+                Toast.makeText(, "Failed to Export data", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }*/
 }
