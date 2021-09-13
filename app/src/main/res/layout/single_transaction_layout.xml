@@ -5,38 +5,44 @@
     android:layout_marginHorizontal="5dp"
     android:layout_marginVertical="10dp"
     >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textAlignment="textStart"
         android:text="@string/transaction_title"
         android:id="@+id/transactionTitle"
         android:textStyle="bold"
-        android:textSize="20sp"
-        android:layout_marginTop="15dp"
+        android:textSize="30sp"
         android:layout_marginStart="20dp"
         android:layout_gravity="start"
         />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:id="@+id/transactionAmt"
+            android:text="@string/_1000"
+            android:textStyle="bold"
+            android:layout_marginStart="20dp"
+            android:textColor="@color/teal_700"
+            />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
         android:id="@+id/transactionDate"
-        android:layout_marginBottom="30dp"
-        android:layout_marginStart="30dp"
         android:text="@string/date"
+        android:layout_marginStart="20dp"
         android:textSize="15sp"
         android:textStyle="italic" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="30sp"
-        android:id="@+id/transactionAmt"
-        android:text="@string/_1000"
-        android:textStyle="bold"
-        android:layout_marginStart="250dp"
-        android:layout_marginTop="35dp"
 
+
+    </LinearLayout>
         />
     <ImageButton
         android:layout_width="40dp"

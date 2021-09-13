@@ -33,6 +33,35 @@
             android:layout_below="@id/txtTotalAmount"
             android:textSize="20dp"/>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:id="@+id/ll_buttons"
+            android:orientation="horizontal"
+            android:layout_alignParentBottom="true"
+            >
+        <Button
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:id="@+id/btnOpenBottomSheet"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textColor="@color/teal_700"
+            android:text="Add"
+            android:drawableLeft="@drawable/ic_plus_24"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:contentDescription="@string/add_new_customer"
+            app:srcCompat="@drawable/ic_plus_24" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="history"
+                />
+        </LinearLayout>
+
     </RelativeLayout>
 
     <ScrollView
@@ -48,23 +77,20 @@
             android:layout_marginVertical="10dp"
             tools:listitem="@layout/single_transaction_layout" />
     </ScrollView>
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btnOpenBottomSheet"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="16dp"
-        app:srcCompat="@drawable/ic_plus_24"
-        android:contentDescription="@string/add_new_customer" />
+
+
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnExportToExcel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
-        android:layout_margin="16dp"
-        app:srcCompat="@drawable/ic_export"
-        android:contentDescription="@string/export_to_pdf" />
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:contentDescription="@string/export_to_pdf"
+        app:srcCompat="@drawable/ic_export" />
 
 </RelativeLayout>

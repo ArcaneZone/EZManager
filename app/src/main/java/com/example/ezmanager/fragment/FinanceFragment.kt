@@ -77,8 +77,9 @@ class FinanceFragment(context: Context): Fragment() {
             val bottomsheet=AddNewTransactionFragment()
             bottomsheet.show(requireActivity().supportFragmentManager,"TAG")
         }
+        btnExport.visibility=View.INVISIBLE
         btnExport.setOnClickListener {
-            val dirPath:String=Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS).path+"/ezManager/"
+            val dirPath:String=Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS).path+"/ezmanager/"
                 val file:File=File(dirPath)
             if (!file.exists())
             {
