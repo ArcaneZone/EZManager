@@ -32,7 +32,7 @@ class DeleteTransactionFragment(private val deletedTransaction:Transaction) : Bo
 
         val db = DatabaseHandler(activity as Context)
 
-        val transactionActivity=FinanceFragment(activity as Context)
+        val transactionActivity=FinanceFragment()
 
         btnOk.setOnClickListener {
             db.deleteTransaction(deletedTransaction)

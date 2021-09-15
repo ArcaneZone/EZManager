@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteException
 import android.database.sqlite.SQLiteOpenHelper
 import com.example.ezmanager.model.Transaction
+import kotlin.reflect.typeOf
 
 
 class DatabaseHandler(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,null,DATABASE_VERSION) {
@@ -18,11 +19,12 @@ class DatabaseHandler(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,
         private const val KEY_ID = "id"
         private const val KEY_TITLE = "title"
         private const val KEY_DATE = "date"
+        private const val KEY_TYPE="type"
         private const val KEY_AMOUNT="amount"
     }
 
     override fun onCreate(db: SQLiteDatabase) {
-        val CREATE_TRANSACTION_TABLE = ("CREATE TABLE $TABLE_TRANSACTION($KEY_ID TEXT PRIMARY KEY,$KEY_TITLE TEXT,$KEY_AMOUNT INTEGER,$KEY_DATE TEXT)")
+        val CREATE_TRANSACTION_TABLE = ("CREATE TABLE $TABLE_TRANSACTION($KEY_ID TEXT PRIMARY KEY,$KEY_TITLE TEXT,$KEY_AMOUNT INTEGER,$KEY_DATE TEXT,$KEY_TYPE TEXT)")
         db.execSQL(CREATE_TRANSACTION_TABLE)
     }
 
@@ -39,6 +41,7 @@ class DatabaseHandler(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,
         contentValues.put(KEY_TITLE, t.title) // EmpModelClass Name
         contentValues.put(KEY_AMOUNT,t.amount )
         contentValues.put(KEY_DATE,t.date )
+        contentValues.put(KEY_TYPE,t.type)
         // EmpModelClass Phone
         // Inserting Row
         val success = db.insert(TABLE_TRANSACTION, null, contentValues)
@@ -65,13 +68,15 @@ class DatabaseHandler(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,
         var tTitle: String
         var tDate: String
         var tAmount:Int
+        var tType:String
         if (cursor.moveToFirst()) {
             do {
                 tId = cursor.getString(cursor.getColumnIndexOrThrow("id"))
                 tTitle= cursor.getString(cursor.getColumnIndexOrThrow("title"))
                 tAmount=cursor.getInt(cursor.getColumnIndexOrThrow("amount"))
                 tDate = cursor.getString(cursor.getColumnIndexOrThrow("date"))
-                val emp= Transaction(tId,tTitle,tAmount,tDate)
+                tType=cursor.getString(cursor.getColumnIndexOrThrow("type"))
+                val emp= Transaction(tId,tTitle,tAmount,tDate,tType)
                 tList.add(emp)
             } while (cursor.moveToNext())
             cursor.close()
@@ -96,10 +101,15 @@ class DatabaseHandler(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,
             return 0
         }
         var tAmount:Int
+        var tType:String
         if (cursor.moveToFirst()) {
             do {
                 tAmount=cursor.getInt(cursor.getColumnIndexOrThrow("amount"))
+                tType=cursor.getString(cursor.getColumnIndexOrThrow("type"))
+                if (tType.equals("C"))
                 totalSum+=tAmount
+                else if (tType.equals("D"))
+                    totalSum-=tAmount
             } while (cursor.moveToNext())
             cursor.close()
         }

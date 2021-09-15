@@ -28,6 +28,7 @@ RecyclerView.Adapter<TransactionDashboardAdapter.ItemViewHolder>(){
         val transactionDate:TextView=view.findViewById(R.id.transactionDate)
         val transactionAmount:TextView=view.findViewById(R.id.transactionAmt)
         val deleteTransaction:ImageView=view.findViewById(R.id.btnDeleteTransaction)
+        val transactionType:ImageView=view.findViewById(R.id.imgTransactionType)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
@@ -48,6 +49,10 @@ RecyclerView.Adapter<TransactionDashboardAdapter.ItemViewHolder>(){
                 val deleteTransactionFragment=DeleteTransactionFragment(transaction)
                 deleteTransactionFragment.show((context as FragmentActivity).supportFragmentManager,"TAG")
             }
+        if(transaction.type == "D")
+        holder.transactionType.setImageResource(R.drawable.img)
+        else if(transaction.type == "C")
+            holder.transactionType.setImageResource(R.drawable.img_1)
 
 
         }

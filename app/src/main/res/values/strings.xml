@@ -24,4 +24,14 @@
     <string name="login_failed">"Login failed"</string>
     <string name="delete_transaction">Delete Transaction</string>
     <string name="export_to_pdf">Export to pdf</string>
+    <string name="today_s_transaction_total_1000">Today\'s Transaction Total</string>
+    <string name="debited">debited</string>
+    <string name="credited">credited</string>
+
+    <string-array name="history_menu">
+        <item>Today</item>
+        <item>Yesterday</item>
+        <item>On Date</item>
+        <item>Range of Date</item>
+    </string-array>
 </resources>

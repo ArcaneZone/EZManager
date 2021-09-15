@@ -27,7 +27,7 @@ class HomeActivity : AppCompatActivity() {
     private val dashboardFragment=DashboardFragment()
     private val customerFragment=CustomerFragment()
     private val workerFragment= WorkerFragment()
-    private val financeFragment= FinanceFragment(this)
+    private val financeFragment= FinanceFragment()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)

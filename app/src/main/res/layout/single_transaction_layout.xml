@@ -5,8 +5,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginHorizontal="5dp"
     android:layout_marginVertical="10dp"
-    android:backgroundTint="#252324"
+    android:backgroundTint="#f6f7d7"
     app:cardCornerRadius="25dp"
+    app:cardElevation="10dp"
     >
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,23 +20,24 @@
         android:textAlignment="textStart"
         android:text="@string/transaction_title"
         android:id="@+id/transactionTitle"
-        android:textColor="#FDD2BF"
-        android:textSize="28sp"
+        android:textColor="#6a2c70"
+        android:textSize="25sp"
         android:layout_marginTop="5dp"
         android:layout_marginStart="20dp"
         android:layout_gravity="start"
-        android:fontFamily="@font/optimus_princeps_semi_bold"
+        android:fontFamily="@font/font1_regular"
         />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="28sp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="5dp"
             android:id="@+id/transactionAmt"
             android:text="@string/_1000"
+            android:textStyle="bold"
             android:layout_marginStart="20dp"
-            android:textColor="@color/teal_700"
-            android:fontFamily="@font/optimus_princeps_semi_bold"
+            android:textColor="#b83b5e"
+            android:fontFamily="@font/font1_regular"
             />
 
     <TextView
@@ -43,12 +45,12 @@
         android:layout_height="wrap_content"
         android:id="@+id/transactionDate"
         android:text="@string/date"
-        android:textColor="@color/white"
+        android:textColor="#364f6b"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="15dp"
-        android:textSize="18sp"
+        android:layout_marginTop="5dp"
+        android:textSize="15sp"
         android:textStyle="italic"
-        android:fontFamily="@font/optimus_princeps"/>
+        android:fontFamily="@font/font1_regular"/>
 
 
     </LinearLayout>
@@ -56,11 +58,23 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:src="@drawable/delete"
-        android:layout_gravity="center_vertical|end"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="20dp"
         android:id="@+id/btnDeleteTransaction"
-        android:layout_marginRight="10dp"
+        android:layout_marginEnd="10dp"
         android:clickable="true"
         />
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/img"
+        android:layout_gravity="center_vertical|end"
+        android:layout_marginBottom="20dp"
+        android:id="@+id/imgTransactionType"
+        android:layout_marginEnd="10dp"
+
+        />
+
 
 
 </androidx.cardview.widget.CardView>

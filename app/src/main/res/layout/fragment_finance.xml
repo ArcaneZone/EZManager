@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.FinanceFragment"
-    android:background="#000000">
+    android:background="#d0f0f3">
 
     <RelativeLayout
         android:id="@+id/Chart"
@@ -13,69 +13,111 @@
         android:layout_height="250dp"
         android:layout_marginHorizontal="10dp"
         android:layout_marginTop="20dp"
-        android:background="@color/black">
+        android:background="@drawable/rounded_dialog"
+        android:backgroundTint="#6379f9"
+        android:elevation="8dp">
 
         <TextView
             android:id="@+id/txtXYz"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:text="Total Amount:"
-            android:textColor="@color/white"
+            android:layout_marginTop="5dp"
             android:fontFamily="@font/optimus_princeps_semi_bold"
-            android:textSize="30dp" />
+            android:text="Total Amount"
+            android:textAlignment="center"
+            android:textColor="#e5826f"
+            android:textSize="40dp"
+            android:textStyle="bold" />
+
         <TextView
             android:id="@+id/txtTotalAmount"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_marginHorizontal="10dp"
             android:layout_below="@+id/txtXYz"
-            android:layout_marginBottom="10dp"
-            android:text="$12000"
-            android:fontFamily="@font/optimus_princeps"
-            android:textColor="@color/white"
-            android:textSize="30dp" />
+            android:layout_marginHorizontal="10dp"
+            android:fontFamily="@font/font1_regular"
+
+            android:text="₹12000"
+            android:textAlignment="center"
+            android:textColor="#4829c3"
+            android:textSize="28sp" />
+
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:text="Today's Transaction Total : $1000"
-            android:textColor="@color/white"
-            android:layout_marginLeft="10dp"
-            android:layout_gravity="bottom"
-            android:fontFamily="@font/optimus_princeps_semi_bold"
+            android:id="@+id/txtTodayXYZ"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
             android:layout_below="@id/txtTotalAmount"
-            android:textSize="20dp"/>
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/optimus_princeps_semi_bold"
+            android:text="@string/today_s_transaction_total_1000"
+            android:textAlignment="center"
+            android:textColor="#e5826f"
+            android:textSize="25sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_below="@id/txtTodayXYZ"
+            android:elevation="1dp"
+            android:fontFamily="@font/font1_regular"
+            android:text="₹1000"
+            android:textAlignment="center"
+            android:textColor="#4829c3"
+            android:textSize="22sp" />
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
             android:id="@+id/ll_buttons"
-            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:layout_alignParentBottom="true"
-            android:weightSum="10"
-            >
-        <Button
-            android:layout_weight="5"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
-            android:id="@+id/btnOpenBottomSheet"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:textColor="@color/teal_700"
-            android:text="Add"
-            app:icon="@drawable/ic_plus_24"
-            android:contentDescription="@string/add_new_customer"
-            />
+            android:background="@drawable/rounded_dialog"
+            android:backgroundTint="#faaf80"
+            android:elevation="2dp"
+            android:orientation="horizontal"
+            android:weightSum="9">
 
             <Button
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
-                android:layout_width="wrap_content"
+                android:id="@+id/btnOpenBottomSheet"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:text="history"
-                app:icon="@drawable/ic_history"
+                android:layout_weight="3"
+                android:background="@drawable/rounded_dialog"
+                android:contentDescription="@string/add_new_customer"
+                android:fontFamily="@font/font1_regular"
+                android:text="Add"
+                android:textColor="#303841" />
+
+            <View style="@style/Divider" />
+
+            <Button
                 android:id="@+id/btnOpenFinanceHistory"
-                android:layout_weight="5"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:background="@drawable/rounded_dialog"
+                android:fontFamily="@font/font1_regular"
+                android:text="history"
+                android:textColor="#303841"
+                android:textSize="14sp" />
+
+            <View style="@style/Divider" />
+
+            <Button
+                android:id="@+id/btnExportToExcel"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Dialog.Flush"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:background="@drawable/rounded_dialog"
+                android:contentDescription="@string/export_to_pdf"
+                android:elevation="0dp"
+                android:fontFamily="@font/font1_regular"
+                android:text="Export"
+                android:textColor="#303841"
+
                 />
         </LinearLayout>
 
@@ -83,7 +125,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_below="@id/Chart">
 
         <androidx.recyclerview.widget.RecyclerView
@@ -91,25 +133,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
-            android:layout_marginVertical="10dp"
-            tools:listitem="@layout/single_transaction_layout" />
+            android:layout_marginVertical="5dp"
+            tools:listitem="@layout/single_transaction_layout"
+            tools:itemCount="10"/>
     </ScrollView>
 
 
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btnExportToExcel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
-        android:layout_marginEnd="16dp"
-
-        android:layout_marginBottom="16dp"
-        android:contentDescription="@string/export_to_pdf"
-        app:srcCompat="@drawable/ic_export" />
 
 </RelativeLayout>

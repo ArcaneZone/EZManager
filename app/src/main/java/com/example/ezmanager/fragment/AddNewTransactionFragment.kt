@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.Button
+import android.widget.RadioGroup
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import com.example.ezmanager.R
@@ -43,9 +44,13 @@ class AddNewTransactionFragment : BottomSheetDialogFragment() {
         val newTitle:TextInputLayout=view.findViewById(R.id.textNewTransactionTitle)
         val newAmount: TextInputLayout =view.findViewById(R.id.textNewTransactionAmount)
         val newDate: TextView =view.findViewById(R.id.textNewTransactionDate)
+
+        var transactionType:String="F"
+
         val openDatePicker: Button =view.findViewById(R.id.btnOpenDatePicker)
-        val transactionActivity=FinanceFragment(activity as Context)
+        val transactionActivity=FinanceFragment()
         val db = DatabaseHandler(activity as Context)
+        val radioGroup:RadioGroup=view.findViewById(R.id.radioGroup)
 
         val addNewTransaction:Button=view.findViewById(R.id.btnAddNewTransaction)
         val dateSetListener =
@@ -69,8 +74,19 @@ class AddNewTransactionFragment : BottomSheetDialogFragment() {
             ).show()
 
         }
+        val checkedRadioButtonId = radioGroup.checkedRadioButtonId // Returns View.NO_ID if nothing is checked.
+        radioGroup.setOnCheckedChangeListener { _, checkedId ->
+            transactionType=when(checkedId){
+                R.id.radio_debit->"D"
+                R.id.radio_credit->"C"
+                else -> "N"
+            }
+        }
+
+
+
         addNewTransaction.setOnClickListener {
-            val transaction= Transaction( LocalDateTime.now().toString(),newTitle.editText?.text.toString().trim(),newAmount.editText?.text.toString().trim().toInt(),newDate.text.toString().trim())
+            val transaction= Transaction( LocalDateTime.now().toString(),newTitle.editText?.text.toString().trim(),newAmount.editText?.text.toString().trim().toInt(),newDate.text.toString().trim(),transactionType)
             db.addTransaction(transaction)
             dismiss()
             requireActivity().supportFragmentManager.beginTransaction().apply {
