@@ -11,6 +11,7 @@ import android.view.WindowManager
 import android.widget.Button
 import android.widget.RadioGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import com.example.ezmanager.R
 import com.example.ezmanager.database.DatabaseHandler
@@ -58,7 +59,7 @@ class AddNewTransactionFragment : BottomSheetDialogFragment() {
                 cal.set(Calendar.YEAR, year)
                 cal.set(Calendar.MONTH, monthOfYear)
                 cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-                val myFormat = "dd/MM/yyyy"
+                val myFormat = "dd-MM-yyyy"
                 val sdf = SimpleDateFormat(myFormat, Locale.US)
                 newDate.text=sdf.format(cal.time)
             }
@@ -86,12 +87,23 @@ class AddNewTransactionFragment : BottomSheetDialogFragment() {
 
 
         addNewTransaction.setOnClickListener {
-            val transaction= Transaction( LocalDateTime.now().toString(),newTitle.editText?.text.toString().trim(),newAmount.editText?.text.toString().trim().toInt(),newDate.text.toString().trim(),transactionType)
-            db.addTransaction(transaction)
-            dismiss()
-            requireActivity().supportFragmentManager.beginTransaction().apply {
-                replace(R.id.content,transactionActivity)
-            }.commit()
+            if (newTitle.editText?.text.toString().trim().isNotEmpty() && newAmount.editText?.text.toString().trim().isNotEmpty() && transactionType!="F"){
+                val transaction:Transaction= Transaction( LocalDateTime.now().toString(),newTitle.editText?.text.toString().trim(),newAmount.editText?.text.toString().trim().toInt(),newDate.text.toString().trim(),transactionType)
+                db.addTransaction(transaction)
+                dismiss()
+                requireActivity().supportFragmentManager.beginTransaction().apply {
+                    replace(R.id.content,transactionActivity)
+                }.commit()
+            }
+            else{
+                if (newTitle.editText?.text.toString().trim().isEmpty())
+                    Toast.makeText(requireActivity(),"Title is missing",Toast.LENGTH_SHORT).show()
+                else if (newAmount.editText?.text.toString().trim().isEmpty())
+                    Toast.makeText(requireActivity(),"Amount is missing",Toast.LENGTH_SHORT).show()
+                else if (transactionType=="F")
+                    Toast.makeText(requireActivity(),"Credit or Debit is missing",Toast.LENGTH_SHORT).show()
+            }
+
         }
         return view
     }

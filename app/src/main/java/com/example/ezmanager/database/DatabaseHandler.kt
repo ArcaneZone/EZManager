@@ -7,6 +7,9 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteException
 import android.database.sqlite.SQLiteOpenHelper
 import com.example.ezmanager.model.Transaction
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.reflect.typeOf
 
 
@@ -110,6 +113,42 @@ class DatabaseHandler(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,
                 totalSum+=tAmount
                 else if (tType.equals("D"))
                     totalSum-=tAmount
+            } while (cursor.moveToNext())
+            cursor.close()
+        }
+        return totalSum
+    }
+    fun sumTransactionToday():Int{
+        var totalSum=0
+        val selectQuery = "SELECT  * FROM $TABLE_TRANSACTION "
+        val db = this.readableDatabase
+        val cursor: Cursor?
+        try{
+
+            cursor = db.rawQuery(selectQuery, null)
+        }catch (e: SQLiteException) {
+            db.execSQL(selectQuery)
+            return 0
+        }
+        var tAmount:Int
+        var tType:String
+        var tDate:String
+        if (cursor.moveToFirst()) {
+            do {
+                tAmount=cursor.getInt(cursor.getColumnIndexOrThrow("amount"))
+                tType=cursor.getString(cursor.getColumnIndexOrThrow("type"))
+                tDate=cursor.getString(cursor.getColumnIndexOrThrow("date"))
+                val myFormat = "dd-MM-yyyy"
+                val calendar:Calendar= Calendar.getInstance()
+                val sdf = SimpleDateFormat(myFormat, Locale.US)
+                val todayDate:String=sdf.format(calendar.time)
+                if (todayDate.compareTo(tDate)==0){
+                    if (tType == "C")
+                        totalSum+=tAmount
+                    else if (tType == "D")
+                        totalSum-=tAmount
+                }
+
             } while (cursor.moveToNext())
             cursor.close()
         }

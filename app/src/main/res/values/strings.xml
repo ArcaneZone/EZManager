@@ -27,6 +27,8 @@
     <string name="today_s_transaction_total_1000">Today\'s Transaction Total</string>
     <string name="debited">debited</string>
     <string name="credited">credited</string>
+    <string name="add_your_transaction_here">Add your Transaction here:</string>
+    <string name="sr_no">Sr.no</string>
 
     <string-array name="history_menu">
         <item>Today</item>

@@ -43,7 +43,8 @@ class FinanceFragment: Fragment() {
     private lateinit var txtTotalAmount:TextView
     private lateinit var btnExport:Button
     private lateinit var btnHistory:Button
-
+    private lateinit var txtTodayAmount:TextView
+    private lateinit var btnSwitch:Button
 
 
 
@@ -63,13 +64,21 @@ class FinanceFragment: Fragment() {
         val view= inflater.inflate(R.layout.fragment_finance, container, false)
         val db = DatabaseHandler(requireActivity())
         val transactionList = db.viewTransactions()
+
+        btnSwitch=view.findViewById(R.id.btnSwitchView)
+
         btnHistory=view.findViewById(R.id.btnOpenFinanceHistory)
          btnExport=view.findViewById(R.id.btnExportToExcel)
         btnOpenBottomSheet=view.findViewById(R.id.btnOpenBottomSheet)
         layoutManager = LinearLayoutManager(activity)
         recyclerView = view.findViewById(R.id.recyclerView)
         txtTotalAmount=view.findViewById(R.id.txtTotalAmount)
-        txtTotalAmount.text= "₹"+db.sumTransaction().toString()
+        txtTotalAmount.text= "₹"+db.sumTransaction()
+
+        txtTodayAmount=view.findViewById(R.id.txtTodayAmount)
+
+        txtTodayAmount.text="₹"+db.sumTransactionToday()
+
         dashboardAdapter = TransactionDashboardAdapter(
             activity as Context,
             transactionList,
@@ -116,6 +125,14 @@ class FinanceFragment: Fragment() {
         btnHistory.setOnClickListener {
             val historyDialog=HistoryDialogueFragment()
             historyDialog.show(requireActivity().supportFragmentManager,"TAG")
+        }
+
+        btnSwitch.setOnClickListener {
+            val transactionTableFragment=TransactionTableFragment()
+                requireActivity().supportFragmentManager.beginTransaction().apply {
+                replace(R.id.content,transactionTableFragment)
+                commit()
+            }
         }
 
 
