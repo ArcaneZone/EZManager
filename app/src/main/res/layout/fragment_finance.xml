@@ -10,7 +10,7 @@
     <RelativeLayout
         android:id="@+id/Chart"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="350dp"
         android:layout_marginHorizontal="10dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/rounded_dialog"
@@ -71,9 +71,8 @@
             android:id="@+id/ll_buttons"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_alignParentBottom="true"
-            android:background="@drawable/rounded_top"
-            android:backgroundTint="#faaf80"
+            android:layout_below="@id/txtTodayAmount"
+            android:background="#faaf80"
             android:elevation="2dp"
             android:orientation="horizontal"
             android:weightSum="9">
