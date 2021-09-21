@@ -23,10 +23,10 @@
             android:layout_height="48dp"
             android:layout_marginTop="5dp"
             android:fontFamily="@font/optimus_princeps_semi_bold"
-            android:text="Total Amount"
+            android:text="@string/total_amount"
             android:textAlignment="center"
             android:textColor="#e5826f"
-            android:textSize="40dp"
+            android:textSize="40sp"
             android:textStyle="bold" />
 
         <TextView
@@ -92,14 +92,14 @@
             <View style="@style/Divider" />
 
             <Button
-                android:id="@+id/btnOpenFinanceHistory"
+                android:id="@+id/btnOpenFinanceStats"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
                 android:background="@drawable/rounded_dialog"
                 android:fontFamily="@font/font1_regular"
-                android:text="history"
+                android:text="@string/stats"
                 android:textColor="#303841"
                 android:textSize="14sp" />
 

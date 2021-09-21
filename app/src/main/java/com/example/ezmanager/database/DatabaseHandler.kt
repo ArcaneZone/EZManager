@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteException
 import android.database.sqlite.SQLiteOpenHelper
 import com.example.ezmanager.model.Transaction
+import com.example.ezmanager.model.stats
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -154,4 +155,36 @@ class DatabaseHandler(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,
         }
         return totalSum
     }
+    fun currentWeekStats():List<stats>{
+        val tList:ArrayList<stats> = ArrayList<stats>()
+        val selectQuery = "SELECT  * FROM $TABLE_TRANSACTION "
+        val db = this.readableDatabase
+        val cursor: Cursor?
+        try{
+
+            cursor = db.rawQuery(selectQuery, null)
+        }catch (e: SQLiteException) {
+            db.execSQL(selectQuery)
+            return ArrayList()
+        }
+        var tDate: String
+        var tAmount:Int
+        var tType:String
+        if (cursor.moveToFirst()) {
+            do {
+                //tId = cursor.getString(cursor.getColumnIndexOrThrow("id"))
+                tDate= cursor.getString(cursor.getColumnIndexOrThrow("date"))
+                val myFormat = "dd-MM-yyyy"
+                val calendar:Calendar= Calendar.getInstance()
+                val sdf = SimpleDateFormat(myFormat, Locale.US)
+                val todayDate:String=sdf.format(calendar.time)
+
+
+
+            } while (cursor.moveToNext())
+            cursor.close()
+        }
+        return tList
+    }
+
 }

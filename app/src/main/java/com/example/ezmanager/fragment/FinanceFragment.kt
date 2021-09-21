@@ -42,7 +42,7 @@ class FinanceFragment: Fragment() {
     private lateinit var btnOpenBottomSheet:Button
     private lateinit var txtTotalAmount:TextView
     private lateinit var btnExport:Button
-    private lateinit var btnHistory:Button
+    private lateinit var btnStats:Button
     private lateinit var txtTodayAmount:TextView
     private lateinit var btnSwitch:Button
 
@@ -66,25 +66,26 @@ class FinanceFragment: Fragment() {
         val transactionList = db.viewTransactions()
 
         btnSwitch=view.findViewById(R.id.btnSwitchView)
-
-        btnHistory=view.findViewById(R.id.btnOpenFinanceHistory)
+        btnStats=view.findViewById(R.id.btnOpenFinanceStats)
          btnExport=view.findViewById(R.id.btnExportToExcel)
         btnOpenBottomSheet=view.findViewById(R.id.btnOpenBottomSheet)
-        layoutManager = LinearLayoutManager(activity)
-        recyclerView = view.findViewById(R.id.recyclerView)
+
+
         txtTotalAmount=view.findViewById(R.id.txtTotalAmount)
         txtTotalAmount.text= "₹"+db.sumTransaction()
-
         txtTodayAmount=view.findViewById(R.id.txtTodayAmount)
-
         txtTodayAmount.text="₹"+db.sumTransactionToday()
 
+
+        layoutManager = LinearLayoutManager(activity)
+        recyclerView = view.findViewById(R.id.recyclerView)
         dashboardAdapter = TransactionDashboardAdapter(
             activity as Context,
             transactionList,
         )
         recyclerView.adapter = dashboardAdapter
         recyclerView.layoutManager = layoutManager
+
 
 
         btnOpenBottomSheet.setOnClickListener {
@@ -122,14 +123,16 @@ class FinanceFragment: Fragment() {
             )
         }
 
-        btnHistory.setOnClickListener {
-            val historyDialog=HistoryDialogueFragment()
-            historyDialog.show(requireActivity().supportFragmentManager,"TAG")
+        btnStats.setOnClickListener {
+            val statsFragment=StatsFragment()
+            requireActivity().supportFragmentManager.beginTransaction().addToBackStack("$statsFragment").apply {
+                replace(R.id.content,statsFragment).commit()
+            }
         }
 
         btnSwitch.setOnClickListener {
             val transactionTableFragment=TransactionTableFragment()
-                requireActivity().supportFragmentManager.beginTransaction().apply {
+                requireActivity().supportFragmentManager.beginTransaction().addToBackStack("$transactionList").apply {
                 replace(R.id.content,transactionTableFragment)
                 commit()
             }

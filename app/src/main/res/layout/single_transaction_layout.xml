@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="150dp"
+    android:layout_height="100dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginHorizontal="5dp"
     android:layout_marginVertical="10dp"
-    android:backgroundTint="#FF6B6B"
+    android:backgroundTint="@color/white"
     app:cardCornerRadius="25dp"
     app:cardElevation="10dp"
     >
@@ -21,7 +21,7 @@
         android:text="@string/transaction_title"
         android:id="@+id/transactionTitle"
         android:textColor="#420516"
-        android:textSize="25sp"
+        android:textSize="20sp"
         android:layout_marginTop="5dp"
         android:layout_marginStart="20dp"
         android:layout_gravity="start"
@@ -30,13 +30,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="28sp"
-            android:layout_marginTop="5dp"
+            android:textSize="20sp"
             android:id="@+id/transactionAmt"
             android:text="@string/_1000"
             android:textStyle="bold"
             android:layout_marginStart="20dp"
-            android:textColor="#FFF8E5"
+            android:textColor="@color/black"
             android:fontFamily="@font/font1_regular"
             />
 
@@ -47,8 +46,7 @@
         android:text="@string/date"
         android:textColor="#364f6b"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="5dp"
-        android:textSize="15sp"
+        android:textSize="12sp"
         android:textStyle="italic"
         android:fontFamily="@font/font1_regular"/>
 
@@ -72,7 +70,6 @@
         android:layout_marginBottom="20dp"
         android:id="@+id/imgTransactionType"
         android:layout_marginEnd="10dp"
-
         />
 
 

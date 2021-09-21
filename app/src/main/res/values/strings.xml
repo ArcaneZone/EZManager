@@ -29,11 +29,18 @@
     <string name="credited">credited</string>
     <string name="add_your_transaction_here">Add your Transaction here:</string>
     <string name="sr_no">Sr.no</string>
+    <string name="total_amount">Total Amount</string>
+    <string name="stats">Stats</string>
+    <string name="select_option">Select Option:</string>
+    <string name="go">GO</string>
+    <string name="show_stats">Show Stats</string>
+    <string name="no_item_selected">NO item selected</string>
+    <string name="thurday">Thurday</string>
+    <string name="_20_09_21_monday">20-09-21 , Monday</string>
 
-    <string-array name="history_menu">
-        <item>Today</item>
-        <item>Yesterday</item>
-        <item>On Date</item>
-        <item>Range of Date</item>
+    <string-array name="stats_menu">
+        <item>Choose Option:</item>
+        <item>last week</item>
+        <item>Current month</item>
     </string-array>
 </resources>

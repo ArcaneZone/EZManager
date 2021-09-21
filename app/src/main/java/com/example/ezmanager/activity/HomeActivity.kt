@@ -50,8 +50,12 @@ class HomeActivity : AppCompatActivity() {
     }
     private fun openDashBoard()
     {
-        setCurrentFragment(dashboardFragment)
+        supportFragmentManager.beginTransaction().apply {
+            replace(R.id.content,dashboardFragment)
+            commit()
     }
+    }
+
     private fun setCurrentFragment(fragment: Fragment)=
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.content,fragment)
@@ -70,6 +74,15 @@ class HomeActivity : AppCompatActivity() {
                 PERMISSIONS_STORAGE,
                 REQUEST_EXTERNAL_STORAGE
             )
+        }
+    }
+    override fun onBackPressed() {
+        val count = supportFragmentManager.backStackEntryCount
+        if (count == 0) {
+            super.onBackPressed()
+
+        } else {
+            supportFragmentManager.popBackStack()
         }
     }
 

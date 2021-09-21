@@ -14,6 +14,8 @@ import android.provider.CalendarContract
 import android.view.Gravity
 import android.widget.TableRow
 import androidx.annotation.ColorInt
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import com.example.ezmanager.R
 import com.example.ezmanager.database.DatabaseHandler
 import com.example.ezmanager.model.Transaction
@@ -22,6 +24,7 @@ import com.example.ezmanager.model.Transaction
 class TransactionTableFragment : Fragment() {
      lateinit var tableLayout: TableLayout
      lateinit var tableLayoutFinal: TableLayout
+    private lateinit var toolBar: Toolbar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +39,8 @@ class TransactionTableFragment : Fragment() {
         val view=inflater.inflate(com.example.ezmanager.R.layout.fragment_transaction_table, container, false)
         val db=DatabaseHandler(requireContext())
         val trasactionList=db.viewTransactions()
+        toolBar=view.findViewById(R.id.toolBar)
+        setToolBar()
 
         tableLayout=view.findViewById(com.example.ezmanager.R.id.table_main)
         tableLayoutFinal=view.findViewById(R.id.table_result)
@@ -87,5 +92,16 @@ class TransactionTableFragment : Fragment() {
 
 
         return view
+    }
+    private fun setToolBar() {
+
+        (activity as AppCompatActivity).setSupportActionBar(toolBar)
+        (activity as AppCompatActivity).supportActionBar?.title = "Switched to Table View"
+        (activity as AppCompatActivity).supportActionBar?.setHomeButtonEnabled(true)
+        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        (activity as AppCompatActivity).supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_back_arrow)
+        toolBar.setNavigationOnClickListener {
+            (activity as AppCompatActivity).onBackPressed()
+        }
     }
 }

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.StatsFragment"
+    android:background="@color/white"
+    android:orientation="vertical">
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinatorLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="0dp"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/teal_200"
+                android:minHeight="?attr/actionBarSize"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark" />
+        </com.google.android.material.appbar.AppBarLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <Spinner
+        android:id="@+id/statsSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:layout_below="@id/coordinatorLayout"
+
+        android:entries="@array/stats_menu" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/statsSpinner"
+        android:id="@+id/btnShowStats"
+        android:text="@string/show_stats"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/statsRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/btnShowStats" />
+    <RelativeLayout
+        android:id="@+id/noOptionSelectedView"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/btnShowStats">
+<ImageView
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:layout_centerInParent="true"
+    android:src="@drawable/select_option"
+    android:contentDescription="@string/no_item_selected" />
+
+    </RelativeLayout>
+
+
+
+
+
+</RelativeLayout>
