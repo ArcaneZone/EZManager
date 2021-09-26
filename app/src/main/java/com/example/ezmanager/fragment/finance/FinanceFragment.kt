@@ -1,4 +1,4 @@
-package com.example.ezmanager.fragment
+package com.example.ezmanager.fragment.finance
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -6,8 +6,6 @@ import android.os.Build
 
 import android.os.Bundle
 import android.os.Environment
-import android.os.Environment.getExternalStorageDirectory
-import android.os.storage.StorageManager
 
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -17,7 +15,6 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.core.os.EnvironmentCompat
 
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -25,9 +22,7 @@ import com.ajts.androidmads.library.SQLiteToExcel
 import com.example.ezmanager.R
 import com.example.ezmanager.adapter.TransactionDashboardAdapter
 import com.example.ezmanager.database.DatabaseHandler
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.io.File
-import java.io.File.separator
 import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
@@ -89,7 +84,7 @@ class FinanceFragment: Fragment() {
 
 
         btnOpenBottomSheet.setOnClickListener {
-            val bottomsheet=AddNewTransactionFragment()
+            val bottomsheet= AddNewTransactionFragment()
             bottomsheet.show(requireActivity().supportFragmentManager,"TAG")
         }
         btnExport.setOnClickListener {
@@ -124,14 +119,14 @@ class FinanceFragment: Fragment() {
         }
 
         btnStats.setOnClickListener {
-            val statsFragment=StatsFragment()
+            val statsFragment= StatsFragment(requireContext())
             requireActivity().supportFragmentManager.beginTransaction().addToBackStack("$statsFragment").apply {
                 replace(R.id.content,statsFragment).commit()
             }
         }
 
         btnSwitch.setOnClickListener {
-            val transactionTableFragment=TransactionTableFragment()
+            val transactionTableFragment= TransactionTableFragment()
                 requireActivity().supportFragmentManager.beginTransaction().addToBackStack("$transactionList").apply {
                 replace(R.id.content,transactionTableFragment)
                 commit()

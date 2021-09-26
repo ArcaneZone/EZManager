@@ -1,4 +1,4 @@
-package com.example.ezmanager.fragment
+package com.example.ezmanager.fragment.finance
 
 import android.content.Context
 import android.os.Bundle
@@ -32,7 +32,7 @@ class DeleteTransactionFragment(private val deletedTransaction:Transaction) : Bo
 
         val db = DatabaseHandler(activity as Context)
 
-        val transactionActivity=FinanceFragment()
+        val transactionActivity= FinanceFragment()
 
         btnOk.setOnClickListener {
             db.deleteTransaction(deletedTransaction)

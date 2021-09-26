@@ -1,4 +1,4 @@
-package com.example.ezmanager.fragment
+package com.example.ezmanager.fragment.finance
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.ezmanager.R
 
-class TransactionHistoryFragment : Fragment() {
+class DashboardFragment : Fragment() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,8 +20,7 @@ class TransactionHistoryFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_transaction_history, container, false)
+        return inflater.inflate(R.layout.fragment_dashboard, container, false)
     }
-
 
 }

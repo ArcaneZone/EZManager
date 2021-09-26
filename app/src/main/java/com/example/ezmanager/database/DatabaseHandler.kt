@@ -6,7 +6,9 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteException
 import android.database.sqlite.SQLiteOpenHelper
+import com.example.ezmanager.model.CustomDate
 import com.example.ezmanager.model.Transaction
+import com.example.ezmanager.model.TransactionType
 import com.example.ezmanager.model.stats
 import java.text.SimpleDateFormat
 import java.util.*
@@ -155,8 +157,10 @@ class DatabaseHandler(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,
         }
         return totalSum
     }
-    fun currentWeekStats():List<stats>{
-        val tList:ArrayList<stats> = ArrayList<stats>()
+    fun sumTransactionDate(date:String):TransactionType{
+        var totalSum=0
+        var totalCredit=0
+        var totalDebit=0
         val selectQuery = "SELECT  * FROM $TABLE_TRANSACTION "
         val db = this.readableDatabase
         val cursor: Cursor?
@@ -165,26 +169,95 @@ class DatabaseHandler(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,
             cursor = db.rawQuery(selectQuery, null)
         }catch (e: SQLiteException) {
             db.execSQL(selectQuery)
-            return ArrayList()
+            return TransactionType(-1,-1,-1)
         }
-        var tDate: String
         var tAmount:Int
         var tType:String
+        var tDate:String
         if (cursor.moveToFirst()) {
             do {
-                //tId = cursor.getString(cursor.getColumnIndexOrThrow("id"))
-                tDate= cursor.getString(cursor.getColumnIndexOrThrow("date"))
-                val myFormat = "dd-MM-yyyy"
-                val calendar:Calendar= Calendar.getInstance()
-                val sdf = SimpleDateFormat(myFormat, Locale.US)
-                val todayDate:String=sdf.format(calendar.time)
+                tAmount=cursor.getInt(cursor.getColumnIndexOrThrow("amount"))
+                tType=cursor.getString(cursor.getColumnIndexOrThrow("type"))
+                tDate=cursor.getString(cursor.getColumnIndexOrThrow("date"))
+                if (date.compareTo(tDate)==0){
+                    if (tType == "C"){
+                        totalSum+=tAmount
+                        totalCredit+=tAmount
+                    }
 
+                    else if (tType == "D"){
+                        totalSum-=tAmount
+                        totalDebit+=tAmount
+                    }
 
+                }
 
             } while (cursor.moveToNext())
             cursor.close()
         }
-        return tList
+        return TransactionType(totalSum,totalCredit,totalDebit)
     }
+    fun sumTransactionDateRange(date:String,date2:String):TransactionType{
+        var totalSum=0
+        var totalCredit=0
+        var totalDebit=0
+        val selectQuery = "SELECT  * FROM $TABLE_TRANSACTION "
+        val db = this.readableDatabase
+        val cursor: Cursor?
+        try{
+
+            cursor = db.rawQuery(selectQuery, null)
+        }catch (e: SQLiteException) {
+            db.execSQL(selectQuery)
+            return TransactionType(-1,-1,-1)
+        }
+        var tAmount:Int
+        var tType:String
+        var tDate:String
+        if (cursor.moveToFirst()) {
+            do {
+                tAmount=cursor.getInt(cursor.getColumnIndexOrThrow("amount"))
+                tType=cursor.getString(cursor.getColumnIndexOrThrow("type"))
+                tDate=cursor.getString(cursor.getColumnIndexOrThrow("date"))
+
+                val dateobject=dateToNum(date)
+                val date2Object=dateToNum(date2)
+                val tdateObject=dateToNum(tDate)
+                if ((tdateObject.dd>=dateobject.dd && tdateObject.dd<=date2Object.dd)&&(tdateObject.mm==dateobject.mm)&&(tdateObject.yy==date2Object.yy) ){
+                    if (tType == "C"){
+                        totalSum+=tAmount
+                        totalCredit+=tAmount
+                    }
+
+                    else if (tType == "D"){
+                        totalSum-=tAmount
+                        totalDebit+=tAmount
+                    }
+
+                }
+
+            } while (cursor.moveToNext())
+            cursor.close()
+        }
+        return TransactionType(totalSum,totalCredit,totalDebit)
+    }
+    fun dateToNum(date: String): CustomDate {
+
+        val d1 = date[0].toString().toInt()
+        val d2 = date[1].toString().toInt()
+        val day = d1 * 10 + d2
+        val m1 = date[3].toString().toInt()
+        val m2 = date[4].toString().toInt()
+        val month = m1 * 10 + m2
+        val y1 = date[6].toString().toInt()
+        val y2 = date[7].toString().toInt()
+        val y3=  date[8].toString().toInt()
+        val y4=  date[9].toString().toInt()
+        val year = y1*1000+y2*100+y3*10+y4
+
+
+        return CustomDate(day, month, year)
+    }
+
 
 }

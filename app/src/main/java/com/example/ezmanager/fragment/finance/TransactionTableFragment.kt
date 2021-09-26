@@ -1,4 +1,4 @@
-package com.example.ezmanager.fragment
+package com.example.ezmanager.fragment.finance
 
 import android.annotation.SuppressLint
 import android.os.Bundle

@@ -1,4 +1,4 @@
-package com.example.ezmanager.fragment
+package com.example.ezmanager.fragment.finance
 
 import android.app.DatePickerDialog
 import android.content.Context
@@ -49,7 +49,7 @@ class AddNewTransactionFragment : BottomSheetDialogFragment() {
         var transactionType:String="F"
 
         val openDatePicker: Button =view.findViewById(R.id.btnOpenDatePicker)
-        val transactionActivity=FinanceFragment()
+        val transactionActivity= FinanceFragment()
         val db = DatabaseHandler(activity as Context)
         val radioGroup:RadioGroup=view.findViewById(R.id.radioGroup)
 

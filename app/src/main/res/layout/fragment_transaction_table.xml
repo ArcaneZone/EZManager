@@ -8,7 +8,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        tools:context=".fragment.TransactionTableFragment">
+        tools:context=".fragment.finance.TransactionTableFragment">
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/coordinatorLayout"
         android:layout_width="match_parent"

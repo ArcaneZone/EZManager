@@ -9,15 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.ezmanager.R
 import com.example.ezmanager.database.DatabaseHandler
 import com.example.ezmanager.model.Transaction
-import android.app.Activity
 import android.widget.*
-import androidx.appcompat.app.AlertDialog
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
-import com.example.ezmanager.fragment.DeleteTransactionFragment
-import com.example.ezmanager.fragment.FinanceFragment
+import com.example.ezmanager.fragment.finance.DeleteTransactionFragment
 
 
 class TransactionDashboardAdapter(val context: Context, private var itemList: List<Transaction>):
@@ -46,7 +40,7 @@ RecyclerView.Adapter<TransactionDashboardAdapter.ItemViewHolder>(){
         holder.transactionAmount.text="₹${transaction.amount}"
         holder.deleteTransaction.setOnClickListener {
 
-                val deleteTransactionFragment=DeleteTransactionFragment(transaction)
+                val deleteTransactionFragment= DeleteTransactionFragment(transaction)
                 deleteTransactionFragment.show((context as FragmentActivity).supportFragmentManager,"TAG")
             }
         if(transaction.type == "D")

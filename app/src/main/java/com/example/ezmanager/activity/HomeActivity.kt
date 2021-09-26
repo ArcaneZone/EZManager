@@ -4,10 +4,10 @@ import android.Manifest
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import com.example.ezmanager.fragment.CustomerFragment
-import com.example.ezmanager.fragment.DashboardFragment
-import com.example.ezmanager.fragment.FinanceFragment
-import com.example.ezmanager.fragment.WorkerFragment
+import com.example.ezmanager.fragment.finance.CustomerFragment
+import com.example.ezmanager.fragment.finance.DashboardFragment
+import com.example.ezmanager.fragment.finance.FinanceFragment
+import com.example.ezmanager.fragment.finance.WorkerFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.core.app.ActivityCompat
 
@@ -24,8 +24,8 @@ class HomeActivity : AppCompatActivity() {
         Manifest.permission.READ_EXTERNAL_STORAGE,
         Manifest.permission.WRITE_EXTERNAL_STORAGE
     )
-    private val dashboardFragment=DashboardFragment()
-    private val customerFragment=CustomerFragment()
+    private val dashboardFragment= DashboardFragment()
+    private val customerFragment= CustomerFragment()
     private val workerFragment= WorkerFragment()
     private val financeFragment= FinanceFragment()
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.StatsFragment"
+    tools:context=".fragment.finance.StatsFragment"
     android:background="@color/white"
     android:orientation="vertical">
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -41,23 +41,26 @@
         android:layout_below="@id/statsSpinner"
         android:id="@+id/btnShowStats"
         android:text="@string/show_stats"/>
-
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/statsRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
-        android:layout_below="@+id/btnShowStats" />
+        android:id="@+id/recyclerViewStats"
+        android:layout_below="@id/btnShowStats"
+        />
+
+
     <RelativeLayout
         android:id="@+id/noOptionSelectedView"
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
         android:layout_below="@+id/btnShowStats">
-<ImageView
-    android:layout_width="match_parent"
-    android:layout_height="fill_parent"
-    android:layout_centerInParent="true"
-    android:src="@drawable/select_option"
-    android:contentDescription="@string/no_item_selected" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_centerInParent="true"
+            android:contentDescription="@string/no_item_selected"
+            android:src="@drawable/select_option" />
 
     </RelativeLayout>
 

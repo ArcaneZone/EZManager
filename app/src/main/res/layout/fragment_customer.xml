@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="#000000"
-    tools:context=".fragment.CustomerFragment">
+    tools:context=".fragment.finance.CustomerFragment">
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="380dp"
