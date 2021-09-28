@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="#000000"
-    tools:context=".fragment.finance.CustomerFragment">
+    tools:context=".fragment.customer.CustomerFragment">
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="380dp"
@@ -42,12 +42,35 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="5dp"
         android:elevation="100dp"
+        android:id="@+id/CustomerAddUserCard"
         app:cardCornerRadius="20dp"
         app:cardBackgroundColor="#252324"
         app:strokeColor="#424242"
         app:strokeWidth="1dp"
         android:clickable="true"
         android:focusable="true"
-    />
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/CustomerAddUserImage"
+                android:layout_width="match_parent"
+                android:layout_height="170dp"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/ic_undraw_add_user_re_5oib" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/CustomerAddUserImage"
+                android:text="Add New Customer"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:layout_centerHorizontal="true"/>
+
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+
 
 </LinearLayout>

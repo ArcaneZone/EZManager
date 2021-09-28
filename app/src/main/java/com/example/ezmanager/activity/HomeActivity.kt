@@ -4,8 +4,7 @@ import android.Manifest
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import com.example.ezmanager.fragment.finance.CustomerFragment
-import com.example.ezmanager.fragment.finance.DashboardFragment
+import com.example.ezmanager.fragment.customer.CustomerFragment
 import com.example.ezmanager.fragment.finance.FinanceFragment
 import com.example.ezmanager.fragment.worker.WorkerFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -24,7 +23,7 @@ class HomeActivity : AppCompatActivity() {
         Manifest.permission.READ_EXTERNAL_STORAGE,
         Manifest.permission.WRITE_EXTERNAL_STORAGE
     )
-    private val dashboardFragment= DashboardFragment()
+
     private val customerFragment= CustomerFragment()
     private val workerFragment= WorkerFragment()
     private val financeFragment= FinanceFragment()
@@ -51,7 +50,7 @@ class HomeActivity : AppCompatActivity() {
     private fun openDashBoard()
     {
         supportFragmentManager.beginTransaction().apply {
-            replace(R.id.content,dashboardFragment)
+            replace(R.id.content,customerFragment)
             commit()
     }
     }
