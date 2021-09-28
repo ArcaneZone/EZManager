@@ -34,7 +34,29 @@
         app:strokeWidth="1dp"
         android:clickable="true"
         android:focusable="true"
-        />
+        >
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/CustomercurrentUserImage"
+                android:layout_width="match_parent"
+                android:layout_height="170dp"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/ic_current_project" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/CustomercurrentUserImage"
+                android:text="See Current Project"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:layout_centerHorizontal="true"/>
+
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="380dp"

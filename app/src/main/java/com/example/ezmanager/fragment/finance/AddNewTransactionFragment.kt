@@ -24,7 +24,7 @@ import java.util.*
 
 
 class AddNewTransactionFragment : BottomSheetDialogFragment() {
-    val cal= Calendar.getInstance()
+    private val cal: Calendar = Calendar.getInstance()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

@@ -24,7 +24,7 @@ class CustomerFragment : Fragment() {
         addNewCustomerCard=view.findViewById(R.id.CustomerAddUserCard)
 
         addNewCustomerCard.setOnClickListener {
-        val addUserFragment= AddUserFragment()
+        val addUserFragment= AddCustomerFragment()
             requireActivity().supportFragmentManager.beginTransaction().addToBackStack("$addUserFragment").apply {
                 replace(R.id.content,addUserFragment).commit()
             }
