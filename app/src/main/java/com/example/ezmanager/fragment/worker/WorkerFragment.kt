@@ -32,7 +32,7 @@ class WorkerFragment : Fragment() {
         button3 = view.findViewById(R.id.worker_card3)
 
         button1.setOnClickListener {
-            val temporaryWorker = TemporaryWorker()
+            val temporaryWorker = TemporaryWorker(requireActivity())
             requireActivity().supportFragmentManager.beginTransaction()
                 .addToBackStack("$temporaryWorker").apply {
                     replace(R.id.content, temporaryWorker).commit()
@@ -48,7 +48,7 @@ class WorkerFragment : Fragment() {
         }
 
         button3.setOnClickListener {
-            val addWorker = AddWorker()
+            val addWorker = AddWorker(requireActivity())
             requireActivity().supportFragmentManager.beginTransaction()
                 .addToBackStack("$addWorker").apply {
                     replace(R.id.content,addWorker).commit()

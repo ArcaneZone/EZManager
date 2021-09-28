@@ -9,33 +9,42 @@ import android.database.sqlite.SQLiteOpenHelper
 import com.example.ezmanager.model.CustomDate
 import com.example.ezmanager.model.Transaction
 import com.example.ezmanager.model.TransactionType
-import com.example.ezmanager.model.stats
+import com.example.ezmanager.model.Worker
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
-import kotlin.reflect.typeOf
 
 
 class DatabaseHandler(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,null,DATABASE_VERSION) {
 
     companion object {
         private const val DATABASE_VERSION = 1
-        private const val DATABASE_NAME = "TransactionDatabase"
+        private const val DATABASE_NAME = "APPDATABASE"
         private const val TABLE_TRANSACTION = "TransactionTable"
-        private const val KEY_ID = "id"
+        private const val KEY_TRANSACTION_ID = "id"
         private const val KEY_TITLE = "title"
         private const val KEY_DATE = "date"
         private const val KEY_TYPE="type"
         private const val KEY_AMOUNT="amount"
+        private const val WORKER_TABLE = "WorkerTable"
+        private const val WORKER_ID = "WorkerId"
+        private const val WORKER_NAME = "WorkerName"
+        private const val WORKER_PAYMENT = "WorkerPayment"
+        private const val WORKER_PHONE = "WorkerPhone"
+        private const val WORKER_DOJ = "WorkerDoj"
+        private const val WORKER_TYPE = "WorkerType"
     }
 
     override fun onCreate(db: SQLiteDatabase) {
-        val CREATE_TRANSACTION_TABLE = ("CREATE TABLE $TABLE_TRANSACTION($KEY_ID TEXT PRIMARY KEY,$KEY_TITLE TEXT,$KEY_AMOUNT INTEGER,$KEY_DATE TEXT,$KEY_TYPE TEXT)")
+        val CREATE_TRANSACTION_TABLE = ("CREATE TABLE $TABLE_TRANSACTION($KEY_TRANSACTION_ID TEXT PRIMARY KEY,$KEY_TITLE TEXT,$KEY_AMOUNT INTEGER,$KEY_DATE TEXT,$KEY_TYPE TEXT)")
+        val CREATE_WORKER_TABLE = ("CREATE TABLE $WORKER_TABLE($WORKER_ID TEXT PRIMARY KEY,$WORKER_NAME TEXT, $WORKER_PAYMENT INTEGER, $WORKER_PHONE TEXT, $WORKER_DOJ TEXT, $WORKER_TYPE TEXT)")
         db.execSQL(CREATE_TRANSACTION_TABLE)
+        db.execSQL(CREATE_WORKER_TABLE)
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
         db!!.execSQL("DROP TABLE IF EXISTS $TABLE_TRANSACTION")
+        db!!.execSQL("DROP TABLE IF EXISTS $WORKER_TABLE")
         onCreate(db)
     }
 
@@ -43,7 +52,7 @@ class DatabaseHandler(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,
     fun addTransaction(t:Transaction):Long{
         val db = this.writableDatabase
         val contentValues = ContentValues()
-        contentValues.put(KEY_ID, t.id)
+        contentValues.put(KEY_TRANSACTION_ID, t.id)
         contentValues.put(KEY_TITLE, t.title) // EmpModelClass Name
         contentValues.put(KEY_AMOUNT,t.amount )
         contentValues.put(KEY_DATE,t.date )
@@ -91,7 +100,7 @@ class DatabaseHandler(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,
     }
     fun deleteTransaction(t: Transaction){
         val db = this.writableDatabase
-        db.execSQL("DELETE FROM " + TABLE_TRANSACTION+ " WHERE "+ KEY_ID+"='"+t.id+"'")
+        db.execSQL("DELETE FROM " + TABLE_TRANSACTION+ " WHERE "+ KEY_TRANSACTION_ID+"='"+t.id+"'")
     }
 
     fun sumTransaction():Int{
@@ -259,5 +268,60 @@ class DatabaseHandler(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,
         return CustomDate(day, month, year)
     }
 
+    // *************************************************************WORKER DATABASE STARTING ***************************************************************************
+
+    //method to insert data
+    fun addWorker(w:Worker):Long{
+        val db = this.writableDatabase
+        val contentValues = ContentValues()
+        contentValues.put(WORKER_ID, w.id)
+        contentValues.put(WORKER_NAME, w.name) // EmpModelClass Name
+        contentValues.put(WORKER_PAYMENT,w.payment )
+        contentValues.put(WORKER_PHONE,w.phone )
+        contentValues.put(WORKER_DOJ,w.doj )
+        contentValues.put(WORKER_TYPE,w.type)
+        // EmpModelClass Phone
+        // Inserting Row
+        val success = db.insert(WORKER_TABLE, null, contentValues)
+        //2nd argument is String containing nullColumnHack
+        db.close() // Closing database connection
+        return success
+    }
+
+    //method to read data
+    fun viewWorker():List<Worker>{
+        val wList:ArrayList<Worker> = ArrayList<Worker>()
+        val selectQuery = "SELECT  * FROM $WORKER_TABLE "
+        val db = this.readableDatabase
+        //var kr de bsdk
+        val cursor: Cursor?
+        try{
+
+            cursor = db.rawQuery(selectQuery, null)
+        }catch (e: SQLiteException) {
+            db.execSQL(selectQuery)
+            return ArrayList()
+        }
+        var wId: String
+        var wName: String
+        var wDoj: String
+        var wPayment:Int
+        var wPhone: String
+        var wType:String
+        if (cursor.moveToFirst()) {
+            do {
+                wId = cursor.getString(cursor.getColumnIndexOrThrow("WorkerId"))
+                wName= cursor.getString(cursor.getColumnIndexOrThrow("WorkerName"))
+                wPayment=cursor.getInt(cursor.getColumnIndexOrThrow("WorkerPayment"))
+                wPhone= cursor.getInt(cursor.getColumnIndexOrThrow("WorkerPhone")).toString()
+                wDoj = cursor.getString(cursor.getColumnIndexOrThrow("WorkerDoj"))
+                wType=cursor.getString(cursor.getColumnIndexOrThrow("WorkerType"))
+                val emp= Worker(wId,wName,wPayment,wPhone,wDoj,wType)
+                wList.add(emp)
+            } while (cursor.moveToNext())
+            cursor.close()
+        }
+        return wList
+    }
 
 }
