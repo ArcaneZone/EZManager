@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment
 import com.example.ezmanager.fragment.finance.CustomerFragment
 import com.example.ezmanager.fragment.finance.DashboardFragment
 import com.example.ezmanager.fragment.finance.FinanceFragment
-import com.example.ezmanager.fragment.finance.WorkerFragment
+import com.example.ezmanager.fragment.worker.WorkerFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.core.app.ActivityCompat
 

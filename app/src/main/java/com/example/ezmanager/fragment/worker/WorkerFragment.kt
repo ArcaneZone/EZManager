@@ -1,4 +1,4 @@
-package com.example.ezmanager.fragment.finance
+package com.example.ezmanager.fragment.worker
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
