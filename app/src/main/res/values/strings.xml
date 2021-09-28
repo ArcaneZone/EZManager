@@ -39,6 +39,7 @@
     <string name="_20_09_21_monday">20-09-21 , Monday</string>
     <string name="customer_name">Customer Name</string>
     <string name="add_user">Add User</string>
+    <string name="worker_name">Worker Name</string>
 
     <string-array name="stats_menu">
         <item>Choose Option:</item>
