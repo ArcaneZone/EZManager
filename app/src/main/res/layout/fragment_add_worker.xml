@@ -18,7 +18,7 @@
             android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
             <androidx.appcompat.widget.Toolbar
-                android:id="@+id/CustomerAddUserToolBar"
+                android:id="@+id/WorkerAddUserToolBar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/teal_200"

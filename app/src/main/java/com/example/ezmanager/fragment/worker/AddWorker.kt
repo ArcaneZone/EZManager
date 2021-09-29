@@ -12,6 +12,8 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import com.example.ezmanager.R
 import com.example.ezmanager.database.DatabaseHandler
 import com.example.ezmanager.model.Transaction
@@ -22,6 +24,7 @@ import java.time.LocalDateTime
 import java.util.*
 
 class AddWorker(context: Context) : Fragment() {
+    private lateinit var toolBar: Toolbar
 
     private lateinit var addbtn: Button
     val db=DatabaseHandler(context)
@@ -38,6 +41,9 @@ class AddWorker(context: Context) : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_add_worker, container, false)
+
+        toolBar = view.findViewById(R.id.WorkerAddUserToolBar)
+        setToolBar()
 
         val newWorkerName: TextInputLayout =view.findViewById(R.id.WorkerAddName)
         val newWorkerPhone: TextInputLayout =view.findViewById(R.id.WorkerAddPhone)
@@ -75,5 +81,16 @@ class AddWorker(context: Context) : Fragment() {
             }
         }
         return view
+    }
+    private fun setToolBar() {
+
+        (activity as AppCompatActivity).setSupportActionBar(toolBar)
+        (activity as AppCompatActivity).supportActionBar?.title = "Add Your New Worker"
+        (activity as AppCompatActivity).supportActionBar?.setHomeButtonEnabled(true)
+        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        (activity as AppCompatActivity).supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_back_arrow)
+        toolBar.setNavigationOnClickListener {
+            (activity as AppCompatActivity).onBackPressed()
+        }
     }
 }

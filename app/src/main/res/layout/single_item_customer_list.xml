@@ -20,6 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Address"
+            android:id="@+id/txtCustomerAddress"
             android:layout_below="@id/txtCustomerName"
             android:textSize="20dp"
             android:padding="10dp"/>

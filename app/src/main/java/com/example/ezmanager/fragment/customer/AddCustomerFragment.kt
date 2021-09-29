@@ -13,14 +13,19 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.example.ezmanager.R
+import com.example.ezmanager.database.DatabaseHandler
+import com.example.ezmanager.model.Customer
 import com.google.android.material.textfield.TextInputLayout
 import java.text.SimpleDateFormat
 import java.util.*
 
 
-class AddCustomerFragment : Fragment() {
+class AddCustomerFragment(context: Context) : Fragment() {
     private lateinit var toolBar: Toolbar
     private val cal: Calendar = Calendar.getInstance()
+
+    val db= DatabaseHandler(context)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activity?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)
@@ -37,6 +42,7 @@ class AddCustomerFragment : Fragment() {
         toolBar = view.findViewById(R.id.CustomerAddUserToolBar)
         setToolBar()
 
+        val addNewCustomer:Button=view.findViewById(R.id.BtnCustomerAddCustomer)
 
        val newCustomerName: TextInputLayout =view.findViewById(R.id.CustomerAddUserName)
         val newPhone: TextInputLayout =view.findViewById(R.id.CustomerAddUserPhone)
@@ -63,6 +69,10 @@ class AddCustomerFragment : Fragment() {
                 cal.get(Calendar.MONTH),
                 cal.get(Calendar.DAY_OF_MONTH)
             ).show()
+        }
+        addNewCustomer.setOnClickListener {
+        val customer=Customer(cal.time.toString(),newCustomerName.editText?.text.toString(),newPhone.editText?.text.toString(),newAddress.editText?.text.toString(),newArea.editText?.text.toString(),newDate.text.toString())
+        db.addCustomer(customer)
         }
 
         return view

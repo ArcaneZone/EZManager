@@ -6,10 +6,7 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteException
 import android.database.sqlite.SQLiteOpenHelper
-import com.example.ezmanager.model.CustomDate
-import com.example.ezmanager.model.Transaction
-import com.example.ezmanager.model.TransactionType
-import com.example.ezmanager.model.Worker
+import com.example.ezmanager.model.*
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -33,18 +30,28 @@ class DatabaseHandler(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,
         private const val WORKER_PHONE = "WorkerPhone"
         private const val WORKER_DOJ = "WorkerDoj"
         private const val WORKER_TYPE = "WorkerType"
+        private const val CUSTOMER_TABLE = "CustomerTable"
+        private const val CUSTOMER_ID = "CustomerId"
+        private const val CUSTOMER_NAME = "CustomerName"
+        private const val CUSTOMER_PHONE = "CustomerPhone"
+        private const val CUSTOMER_ADDRESS = "CustomerAddress"
+        private const val CUSTOMER_AREA = "CustomerArea"
+        private const val CUSTOMER_DATE = "CustomerDate"
     }
 
     override fun onCreate(db: SQLiteDatabase) {
         val CREATE_TRANSACTION_TABLE = ("CREATE TABLE $TABLE_TRANSACTION($KEY_TRANSACTION_ID TEXT PRIMARY KEY,$KEY_TITLE TEXT,$KEY_AMOUNT INTEGER,$KEY_DATE TEXT,$KEY_TYPE TEXT)")
         val CREATE_WORKER_TABLE = ("CREATE TABLE $WORKER_TABLE($WORKER_ID TEXT PRIMARY KEY,$WORKER_NAME TEXT, $WORKER_PAYMENT INTEGER, $WORKER_PHONE TEXT, $WORKER_DOJ TEXT, $WORKER_TYPE TEXT)")
+        val CREATE_CUSTOMER_TABLE = ("CREATE TABLE $CUSTOMER_TABLE($CUSTOMER_ID TEXT PRIMARY KEY,$CUSTOMER_NAME TEXT, $CUSTOMER_PHONE TEXT, $CUSTOMER_ADDRESS TEXT, $CUSTOMER_AREA INT,$CUSTOMER_DATE TEXT)")
         db.execSQL(CREATE_TRANSACTION_TABLE)
         db.execSQL(CREATE_WORKER_TABLE)
+        db.execSQL(CREATE_CUSTOMER_TABLE)
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
         db!!.execSQL("DROP TABLE IF EXISTS $TABLE_TRANSACTION")
         db!!.execSQL("DROP TABLE IF EXISTS $WORKER_TABLE")
+        db!!.execSQL("DROP TABLE IF EXISTS $CUSTOMER_TABLE")
         onCreate(db)
     }
 
@@ -60,6 +67,22 @@ class DatabaseHandler(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,
         // EmpModelClass Phone
         // Inserting Row
         val success = db.insert(TABLE_TRANSACTION, null, contentValues)
+        //2nd argument is String containing nullColumnHack
+        db.close() // Closing database connection
+        return success
+    }
+    fun addCustomer(c:Customer):Long{
+        val db = this.writableDatabase
+        val contentValues = ContentValues()
+        contentValues.put(CUSTOMER_ID, c.id)
+        contentValues.put(CUSTOMER_NAME, c.name) // EmpModelClass Name
+        contentValues.put(CUSTOMER_PHONE,c.phone )
+        contentValues.put(CUSTOMER_ADDRESS,c.address )
+        contentValues.put(CUSTOMER_AREA,c.area)
+        contentValues.put(CUSTOMER_DATE,c.date)
+        // EmpModelClass Phone
+        // Inserting Row
+        val success = db.insert(CUSTOMER_TABLE, null, contentValues)
         //2nd argument is String containing nullColumnHack
         db.close() // Closing database connection
         return success
@@ -93,6 +116,40 @@ class DatabaseHandler(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,
                 tType=cursor.getString(cursor.getColumnIndexOrThrow("type"))
                 val emp= Transaction(tId,tTitle,tAmount,tDate,tType)
                 tList.add(emp)
+            } while (cursor.moveToNext())
+            cursor.close()
+        }
+        return tList
+    }
+    fun viewCustomer():List<Customer>{
+        val tList:ArrayList<Customer> = ArrayList<Customer>()
+        val selectQuery = "SELECT  * FROM $CUSTOMER_TABLE "
+        val db = this.readableDatabase
+        //var kr de bsdk
+        val cursor: Cursor?
+        try{
+
+            cursor = db.rawQuery(selectQuery, null)
+        }catch (e: SQLiteException) {
+            db.execSQL(selectQuery)
+            return ArrayList()
+        }
+        var cId: String
+        var cName: String
+        var cPhone: String
+        var cAddress:String
+        var cArea:String
+        var cDate:String
+        if (cursor.moveToFirst()) {
+            do {
+                cId = cursor.getString(cursor.getColumnIndexOrThrow("CustomerId"))
+                cName= cursor.getString(cursor.getColumnIndexOrThrow("CustomerName"))
+                cPhone=cursor.getString(cursor.getColumnIndexOrThrow("CustomerPhone"))
+                cAddress = cursor.getString(cursor.getColumnIndexOrThrow("CustomerAddress"))
+                cArea=cursor.getString(cursor.getColumnIndexOrThrow("CustomerArea"))
+                cDate=cursor.getString(cursor.getColumnIndexOrThrow("CustomerDate"))
+                val customer=Customer(cId,cName,cPhone,cAddress,cArea,cDate)
+                tList.add(customer)
             } while (cursor.moveToNext())
             cursor.close()
         }

@@ -22,7 +22,7 @@ class WorkerAdapter(val context: Context, private var itemList: List<Worker>):
         viewType: Int
     ): WorkerAdapter.ItemViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.single_permanentworker_layout, parent, false)
+            .inflate(R.layout.single_temporaryworker_layout, parent, false)
 
         return WorkerAdapter.ItemViewHolder(view)
     }
