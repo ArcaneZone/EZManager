@@ -18,6 +18,7 @@ import com.example.ezmanager.R
 import com.example.ezmanager.database.DatabaseHandler
 import com.example.ezmanager.model.Transaction
 import com.example.ezmanager.model.Worker
+import com.google.android.material.slider.Slider
 import com.google.android.material.textfield.TextInputLayout
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
@@ -50,6 +51,8 @@ class AddWorker(context: Context) : Fragment() {
         val newWorkerAddress: TextInputLayout =view.findViewById(R.id.WorkerAddAddress)
         val newDate: TextView = view.findViewById(R.id.WorkerJoinDate)
         val openDatePicker: Button = view.findViewById(R.id.btnOpenDatePicker)
+        val switchUserType: Slider = view.findViewById(R.id.switchUserType)
+        var userType: String = "none"
         addbtn=view.findViewById(R.id.btnAddWorker)
 
         val dateSetListener =
@@ -75,8 +78,13 @@ class AddWorker(context: Context) : Fragment() {
         }
 
         addbtn.setOnClickListener {
+            if(switchUserType.value.equals(0)) {
+                userType = "Temporary"
+            } else if(switchUserType.value.equals(100)) {
+                userType = "Permanent"
+            }
             if (newWorkerName.editText?.text.toString().trim().isNotEmpty() && newWorkerPhone.editText?.text.toString().trim().isNotEmpty()){
-                val worker: Worker = Worker( cal.time.toString(),newWorkerName.editText?.text.toString().trim(),0,newWorkerPhone.editText?.text.toString().trim(),newDate.text.toString().trim(),"Temporary")
+                val worker: Worker = Worker( cal.time.toString(),newWorkerName.editText?.text.toString().trim(),0,newWorkerPhone.editText?.text.toString().trim(),newDate.text.toString().trim(),userType)
                 db.addWorker(worker)
             }
         }
