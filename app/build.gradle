@@ -54,4 +54,5 @@ dependencies {
     implementation files('libs/opencsv-2.4.jar')
     implementation "com.cleveroad:adaptivetablelayout:1.2.1"
     implementation 'com.ajts.androidmads.SQLite2Excel:library:1.0.2'
+    implementation 'com.airbnb.android:lottie:4.1.0'
 }

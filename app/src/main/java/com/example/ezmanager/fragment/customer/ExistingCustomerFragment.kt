@@ -50,7 +50,7 @@ class ExistingCustomerFragment(context: Context) : Fragment() {
         )
         recyclerView.adapter = dashboardAdapter
         recyclerView.layoutManager = layoutManager
-
+        recyclerView.setHasFixedSize(false)
         return view
     }
     private fun setToolBar() {

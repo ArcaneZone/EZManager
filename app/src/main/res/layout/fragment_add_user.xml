@@ -150,12 +150,50 @@
             android:text="@string/select_date"
             android:textColor="#28ffbf" />
 
+        <com.google.android.material.button.MaterialButtonToggleGroup
+            android:id="@+id/toggleGroupCustomer"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_below="@id/btnCustomerOpenDatePicker"
+            app:selectionRequired="true"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="None"
+                android:textSize="11sp"
+
+                android:layout_weight="1"
+                android:textAllCaps="false" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="Labour Basis"
+                android:textSize="11sp"
+                android:layout_weight="1"
+                android:textAllCaps="false"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button3"
+                android:layout_width="0dp"
+                android:textSize="11sp"
+                android:text="Material Basis"
+                android:textAllCaps="false"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+        </com.google.android.material.button.MaterialButtonToggleGroup>
+
 
         <Button
             android:id="@+id/BtnCustomerAddCustomer"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:layout_below="@id/btnCustomerOpenDatePicker"
+            android:layout_below="@id/toggleGroupCustomer"
             android:text="@string/add_new_customer" />
 
 

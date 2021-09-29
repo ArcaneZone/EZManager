@@ -73,6 +73,10 @@ class AddCustomerFragment(context: Context) : Fragment() {
         addNewCustomer.setOnClickListener {
         val customer=Customer(cal.time.toString(),newCustomerName.editText?.text.toString(),newPhone.editText?.text.toString(),newAddress.editText?.text.toString(),newArea.editText?.text.toString(),newDate.text.toString())
         db.addCustomer(customer)
+            val fragment=NewCustomerAddedFragment()
+            requireActivity().supportFragmentManager.beginTransaction().apply {
+                replace(R.id.content,fragment).commit()
+            }
         }
 
         return view
