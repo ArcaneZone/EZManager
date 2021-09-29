@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_height="150dp"
+    android:id="@+id/CustomerLlContent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:elevation="10dp"
     android:layout_margin="5dp"
@@ -16,12 +17,39 @@
             android:id="@+id/txtCustomerName"
             android:textSize="20dp"
             android:padding="10dp"/>
+<ImageView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:src="@drawable/ic_trash"
+    android:id="@+id/customerDelete"
+    android:clickable="true"
+    android:layout_alignParentRight="true"
+    android:layout_margin="15dp"
+    />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_trash"
+            android:id="@+id/customerType"
+            android:layout_below="@id/customerDelete"
+            android:layout_alignParentRight="true"
+            android:layout_margin="15dp"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Phone"
+            android:id="@+id/txtCustomerPhone"
+            android:layout_below="@id/txtCustomerName"
+            android:textSize="20dp"
+            android:padding="10dp"/>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Address"
             android:id="@+id/txtCustomerAddress"
-            android:layout_below="@id/txtCustomerName"
+            android:layout_below="@id/txtCustomerPhone"
             android:textSize="20dp"
             android:padding="10dp"/>
     </RelativeLayout>

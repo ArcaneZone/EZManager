@@ -159,6 +159,10 @@ class DatabaseHandler(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,
         val db = this.writableDatabase
         db.execSQL("DELETE FROM " + TABLE_TRANSACTION+ " WHERE "+ KEY_TRANSACTION_ID+"='"+t.id+"'")
     }
+    fun deleteCustomer(c: Customer){
+        val db = this.writableDatabase
+        db.execSQL("DELETE FROM " + CUSTOMER_TABLE+ " WHERE "+ CUSTOMER_ID+"='"+c.id+"'")
+    }
 
     fun sumTransaction():Int{
         var totalSum=0
