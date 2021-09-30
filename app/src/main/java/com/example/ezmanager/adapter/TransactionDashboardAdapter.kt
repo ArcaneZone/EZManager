@@ -12,10 +12,16 @@ import com.example.ezmanager.model.Transaction
 import android.widget.*
 import androidx.fragment.app.FragmentActivity
 import com.example.ezmanager.fragment.finance.DeleteTransactionFragment
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class TransactionDashboardAdapter(val context: Context, private var itemList: List<Transaction>):
 RecyclerView.Adapter<TransactionDashboardAdapter.ItemViewHolder>(){
+    var countryFilterList = listOf<Transaction>()
+    init {
+        countryFilterList = itemList
+    }
     private val db = DatabaseHandler(context)
     class ItemViewHolder (view: View) : RecyclerView.ViewHolder(view){
         val transactionTitle:TextView=view.findViewById(R.id.transactionTitle)
@@ -47,9 +53,12 @@ RecyclerView.Adapter<TransactionDashboardAdapter.ItemViewHolder>(){
         holder.transactionType.setImageResource(R.drawable.img)
         else if(transaction.type == "C")
             holder.transactionType.setImageResource(R.drawable.img_1)
-
-
         }
+
+    fun filterList(filteredList: ArrayList<Transaction>) {
+        itemList = filteredList
+        notifyDataSetChanged()
+    }
 
 
     override fun getItemCount(): Int {

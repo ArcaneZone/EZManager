@@ -25,11 +25,20 @@
                 android:theme="@style/ThemeOverlay.AppCompat.Dark" />
         </com.google.android.material.appbar.AppBarLayout>
 
+
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    <EditText
+        android:id="@+id/searchView"
+        android:layout_below="@id/TransactionCoordinatorLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_search_black_24dp"
+        android:hint="Search Here" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
-        android:layout_below="@id/TransactionCoordinatorLayout">
+        android:layout_below="@id/searchView">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
