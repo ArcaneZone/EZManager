@@ -57,7 +57,7 @@ class PreviousTransactionFragment : Fragment() {
             statsSpinner.visibility=View.INVISIBLE
             btnShowStats.visibility=View.INVISIBLE
             recyclerViewStats.visibility=View.INVISIBLE
-            val bottomsheet= ExportToExcelLatest()
+            val bottomsheet= ExportToExcelFragment()
             bottomsheet.show(requireActivity().supportFragmentManager,"TAG")
         }
 

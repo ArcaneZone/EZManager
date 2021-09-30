@@ -9,12 +9,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/rounded_dialog"
     android:backgroundTint="#F9F3DF"
-    >
+    tools:ignore="ExtraText">
+
+    <!--android:fontFamily="@font/sfpro"-->
     <TextView
         android:id="@+id/txtMssg"
         android:layout_width="match_parent"
         android:layout_height="42dp"
-        android:fontFamily="@font/sfpro"
         android:text="@string/add_your_transaction_here"
         android:textAlignment="center"
         android:textColor="@color/black"
@@ -28,12 +29,12 @@
         android:layout_margin="10dp"
         android:hint="@string/title">
 
+        <!--android:fontFamily="@font/sfpro"-->
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLines="1"
             android:textColor="@color/black"
-            android:fontFamily="@font/sfpro"
             android:inputType="textShortMessage"
             />
 
@@ -46,17 +47,18 @@
         android:layout_margin="10dp"
         android:hint="@string/amount">
 
+        <!--android:fontFamily="@font/sfpro"-->
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLines="1"
             android:textColor="@color/black"
-            android:fontFamily="@font/sfpro"
             android:inputType="numberDecimal"
             />
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <!--android:fontFamily="@font/sfpro"-->
     <TextView
         android:id="@+id/textNewTransactionDate"
         android:layout_width="wrap_content"
@@ -65,9 +67,9 @@
         android:layout_marginHorizontal="20dp"
         android:textColor="@color/black"
         android:layout_marginTop="15dp"
-        android:fontFamily="@font/sfpro"
         android:text="@string/no_date_selected" />
 
+    <!--android:fontFamily="@font/sfpro"-->
     <Button
         android:id="@+id/btnOpenDatePicker"
         style="@style/Widget.MaterialComponents.Button.TextButton"
@@ -76,7 +78,6 @@
         android:layout_below="@+id/textNewTransactionAmount"
         android:layout_alignParentEnd="true"
         android:layout_marginHorizontal="25dp"
-        android:fontFamily="@font/sfpro"
         android:text="@string/select_date"
         android:textColor="#28ffbf" />
 
@@ -99,18 +100,18 @@
         android:orientation="horizontal"
     android:layout_height="wrap_content">
 
+        <!--android:fontFamily="@font/sfpro"-->
         <RadioButton
                 android:id="@+id/radio_debit"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="@string/debited"
             android:textColor="#da0037"
-            android:fontFamily="@font/sfpro"
                 />
+        <!--android:fontFamily="@font/sfpro"-->
             <RadioButton
                 android:id="@+id/radio_credit"
                 android:layout_width="wrap_content"
-                android:fontFamily="@font/sfpro"
                 android:layout_height="match_parent"
                 android:textColor="#61b15a"
                 android:text="@string/credited"/>

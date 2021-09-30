@@ -105,7 +105,7 @@ class AddMultipleTransactionFragment : Fragment() {
         }
         addMultipleTransaction.setOnClickListener {
             if (newTitle.editText?.text.toString().trim().isNotEmpty() && newAmount.editText?.text.toString().trim().isNotEmpty() && transactionType!="F"){
-                val transaction: Transaction = Transaction( LocalDateTime.now().toString(),newTitle.editText?.text.toString().trim(),newAmount.editText?.text.toString().trim().toInt(),newDate.text.toString().trim(),transactionType)
+                val transaction: Transaction = Transaction( cal.time.toString(),newTitle.editText?.text.toString().trim(),newAmount.editText?.text.toString().trim().toInt(),newDate.text.toString().trim(),transactionType)
                 db.addTransaction(transaction)
                 val sameFragment=AddMultipleTransactionFragment()
                 requireActivity().supportFragmentManager.beginTransaction().apply {
