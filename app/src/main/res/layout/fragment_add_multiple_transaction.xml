@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@+id/standard_bottom_sheet"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragment.finance.AddMultipleTransactionFragment"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/rounded_dialog"
+    android:backgroundTint="#F9F3DF"
+    >
+    <TextView
+        android:id="@+id/txtMssg"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:fontFamily="@font/sfpro"
+        android:text="@string/add_your_transaction_here"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="25sp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textNewTransactionTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtMssg"
+        android:layout_margin="10dp"
+        android:hint="@string/title">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:textColor="@color/black"
+            android:fontFamily="@font/sfpro"
+            android:inputType="textShortMessage"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textNewTransactionAmount"
+        android:layout_width="match_parent"
+        android:layout_below="@id/textNewTransactionTitle"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="@string/amount">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:textColor="@color/black"
+            android:fontFamily="@font/sfpro"
+            android:inputType="numberDecimal"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/textNewTransactionDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textNewTransactionAmount"
+        android:layout_marginHorizontal="20dp"
+        android:textColor="@color/black"
+        android:layout_marginTop="15dp"
+        android:fontFamily="@font/sfpro"
+        android:text="@string/no_date_selected" />
+
+    <Button
+        android:id="@+id/btnOpenDatePicker"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textNewTransactionAmount"
+        android:layout_alignParentEnd="true"
+        android:layout_marginHorizontal="25dp"
+        android:fontFamily="@font/sfpro"
+        android:text="@string/select_date"
+        android:textColor="#28ffbf" />
+
+    <Button
+        android:id="@+id/btnAddNewTransaction"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnAddNewTransactionAndGo"
+        android:layout_alignParentEnd="true"
+        android:layout_marginHorizontal="25dp"
+        android:backgroundTint="#99ff00"
+        android:text="@string/add"
+        android:textColor="@color/black" />
+
+    <Button
+        android:id="@+id/btnAddNewTransactionAndGo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/radioGroup"
+        android:layout_alignParentEnd="true"
+        android:layout_marginHorizontal="25dp"
+        android:backgroundTint="#99ff00"
+        android:text="Add And Go Next"
+        android:textColor="@color/black" />
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:checkedButton="@+id/radio_button_1"
+        android:layout_below="@id/textNewTransactionDate"
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/radio_debit"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/debited"
+            android:textColor="#da0037"
+            android:fontFamily="@font/sfpro"
+            />
+        <RadioButton
+            android:id="@+id/radio_credit"
+            android:layout_width="wrap_content"
+            android:fontFamily="@font/sfpro"
+            android:layout_height="match_parent"
+            android:textColor="#61b15a"
+            android:text="@string/credited"/>
+
+    </RadioGroup>
+
+
+</RelativeLayout>

@@ -13,8 +13,7 @@ import androidx.core.app.ActivityCompat
 import android.content.pm.PackageManager
 
 import android.app.Activity
-
-
+import com.example.ezmanager.fragment.finance.Finance2Fragment
 
 
 class HomeActivity : AppCompatActivity() {
@@ -26,7 +25,7 @@ class HomeActivity : AppCompatActivity() {
 
     private val customerFragment= CustomerFragment()
     private val workerFragment= WorkerFragment()
-    private val financeFragment= FinanceFragment()
+    private val financeFragment= Finance2Fragment()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
