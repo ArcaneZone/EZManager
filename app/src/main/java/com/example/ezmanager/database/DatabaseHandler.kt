@@ -385,4 +385,9 @@ class DatabaseHandler(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,
         return wList
     }
 
+    fun deleteWorker(w: Worker){
+        val db = this.writableDatabase
+        db.execSQL("DELETE FROM " + WORKER_TABLE+ " WHERE "+ WORKER_ID +"='"+w.id+"'")
+    }
+
 }

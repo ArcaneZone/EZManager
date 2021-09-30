@@ -32,10 +32,10 @@ class Finance2Fragment : Fragment() {
         addMultipleCard = view.findViewById(R.id.transactionAddMultiple)
 
         showHistory.setOnClickListener {
-            val temporaryWorker = TemporaryWorker(requireActivity())
+            val historyFragment = PreviousTransactionFragment()
             requireActivity().supportFragmentManager.beginTransaction()
-                .addToBackStack("$temporaryWorker").apply {
-                    replace(R.id.content, temporaryWorker).commit()
+                .addToBackStack("$historyFragment").apply {
+                    replace(R.id.content, historyFragment).commit()
                 }
         }
 

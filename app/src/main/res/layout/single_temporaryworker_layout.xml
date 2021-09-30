@@ -9,7 +9,7 @@
     app:cardCornerRadius="25dp"
     app:cardElevation="10dp"
     >
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -35,23 +35,22 @@
             android:id="@+id/dailyWorkerWage"
             android:text="Amount to Pay"
             android:textStyle="bold"
+            android:layout_below="@id/DailyWorkerName"
             android:layout_marginStart="20dp"
             android:textColor="@color/black"
             android:fontFamily="@font/font1_regular"
             />
 
-        <TextView
+        <ImageView
+            android:id="@+id/deleteWorker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/dailyWorkerDate"
-            android:text="FromDate to ToDate"
-            android:textColor="#364f6b"
-            android:layout_marginStart="20dp"
-            android:textSize="12sp"
-            android:textStyle="bold"
-            android:fontFamily="@font/font1_regular"/>
+            android:src="@drawable/ic_trash"
+            android:layout_alignParentRight="true"
+            android:layout_margin="15dp"
+            android:clickable="true"
+            />
 
-
-    </LinearLayout>
+    </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

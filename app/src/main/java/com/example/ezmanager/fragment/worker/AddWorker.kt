@@ -78,9 +78,9 @@ class AddWorker(context: Context) : Fragment() {
         }
 
         addbtn.setOnClickListener {
-            if(switchUserType.value.equals(0)) {
+            if(switchUserType.value<=50) {
                 userType = "Temporary"
-            } else if(switchUserType.value.equals(100)) {
+            } else if(switchUserType.value>50) {
                 userType = "Permanent"
             }
             if (newWorkerName.editText?.text.toString().trim().isNotEmpty() && newWorkerPhone.editText?.text.toString().trim().isNotEmpty()){
