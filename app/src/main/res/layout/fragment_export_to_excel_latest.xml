@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@+id/standard_bottom_sheet"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragment.finance.AddNewTransactionFragment"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/rounded_dialog"
+    android:backgroundTint="#F9F3DF"
+    >
+
+    <TextView
+        android:id="@+id/txtExportSheetMsg"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:fontFamily="@font/sfpro"
+        android:text="Export to Excel Menu"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="25sp" />
+
+    <ImageView
+        android:id="@+id/btnExportShare"
+        android:layout_below="@+id/txtExportSheetMsg"
+        android:layout_toRightOf="@+id/btnExportDownload"
+        android:clickable="true"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_baseline_share_24"
+        android:layout_margin="30dp"
+        />
+
+    <ImageView
+        android:id="@+id/btnExportDownload"
+        android:clickable="true"
+        android:layout_below="@+id/txtExportSheetMsg"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_download"
+        android:layout_margin="30dp"
+        />
+
+    <Button
+        android:id="@+id/btnExportDone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnExportShare"
+        android:layout_alignParentEnd="true"
+        android:layout_marginHorizontal="25dp"
+        android:backgroundTint="#99ff00"
+        android:text="Done"
+        android:textColor="@color/black" />
+
+
+</RelativeLayout>
