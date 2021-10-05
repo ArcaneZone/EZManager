@@ -47,8 +47,6 @@
         android:id="@+id/recyclerViewStats"
         android:layout_below="@id/btnShowStats"
         />
-
-
     <RelativeLayout
         android:id="@+id/noOptionSelectedView"
         android:layout_width="match_parent"

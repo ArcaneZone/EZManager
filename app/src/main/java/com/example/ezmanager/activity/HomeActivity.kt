@@ -52,12 +52,14 @@ class HomeActivity : AppCompatActivity() {
             replace(R.id.content,customerFragment)
             commit()
     }
+        clearAllBackstack()
     }
 
     private fun setCurrentFragment(fragment: Fragment)=
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.content,fragment)
             commit()
+            clearAllBackstack()
         }
     private fun verifyStoragePermissions(activity: Activity?) {
         // Check if we have write permission
@@ -80,6 +82,12 @@ class HomeActivity : AppCompatActivity() {
             super.onBackPressed()
 
         } else {
+            supportFragmentManager.popBackStack()
+        }
+    }
+    fun clearAllBackstack(){
+        val count = supportFragmentManager.backStackEntryCount
+        for (i in 0 until count) {
             supportFragmentManager.popBackStack()
         }
     }

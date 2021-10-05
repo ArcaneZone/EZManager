@@ -10,7 +10,7 @@
     >
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/transactionHistory"
+        android:id="@+id/btnAllTransactions"
         android:layout_width="match_parent"
         android:layout_marginHorizontal="10dp"
         android:layout_height="0dp"

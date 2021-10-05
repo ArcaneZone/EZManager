@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_marginTop="5dp"
     android:layout_height="match_parent"
+    android:background="@color/black"
     tools:context=".fragment.finance.PreviousTransactionFragment">
-
+<!--
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/TransactionCoordinatorLayout"
         android:layout_width="match_parent"
@@ -26,93 +29,44 @@
         </com.google.android.material.appbar.AppBarLayout>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    -->
 
-    <!--3 Main Button-->
-    <LinearLayout
-        android:id="@+id/btnsPreviousTransactions"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/TransactionCoordinatorLayout"
-        android:orientation="horizontal"
-        android:weightSum="9"
-        >
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnDefaultTransactions"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="All Transactions"
-            android:textSize="10sp"
-            android:layout_weight="3"
-            android:padding="2dp"
-            />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnStats"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Statistics"
-            android:textSize="10sp"
-            android:layout_weight="3"
-            />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnExport"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Export"
-            android:textSize="10sp"
-            android:layout_weight="3"
-            />
-
-    </LinearLayout>
-
-    <!--Default Scroll VIew All Transactions-->
-    <ScrollView
-        android:id="@+id/defaultScrollView"
-        android:layout_width="match_parent"
-        android:layout_height="fill_parent"
-        android:layout_below="@id/btnsPreviousTransactions">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="fill_parent"
-            tools:listitem="@layout/single_transaction_layout">
-
-        </androidx.recyclerview.widget.RecyclerView>
-
-    </ScrollView>
-
-    <!--Stats Show Spinner-->
     <Spinner
         android:id="@+id/statsSpinner"
-        android:layout_width="match_parent"
+        android:layout_width="280dp"
         android:layout_height="42dp"
-        android:layout_below="@id/btnsPreviousTransactions"
-        android:entries="@array/stats_menu"
-        android:visibility="invisible" />
+        android:layout_marginLeft="5dp"
+        android:backgroundTint="@color/white"
+        android:entries="@array/stats_menu" />
 
-    <!--Stats Show Stats Button-->
     <Button
-        android:visibility="invisible"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/statsSpinner"
         android:id="@+id/btnShowStats"
-        android:text="@string/show_stats"/>
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="5dp"
+        android:layout_toRightOf="@id/statsSpinner"
+        android:text="show" />
 
-    <!--Stats Recycler View-->
     <androidx.recyclerview.widget.RecyclerView
-        android:visibility="invisible"
+        android:id="@+id/recyclerViewStats"
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
-        android:id="@+id/recyclerViewStats"
-        android:layout_below="@id/btnShowStats"
+        android:layout_above="@id/btnExport"
+        android:layout_below="@id/btnShowStats" />
+    <Button
+        android:id="@+id/btnExport"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginVertical="2dp"
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_height="62dp"
+        android:text="Export"
+        android:backgroundTint="@color/white"
+        android:elevation="2dp"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
         />
-
-    <!--Default Image-->
     <RelativeLayout
-        android:visibility="invisible"
         android:id="@+id/noOptionSelectedView"
         android:layout_width="match_parent"
         android:layout_height="fill_parent"

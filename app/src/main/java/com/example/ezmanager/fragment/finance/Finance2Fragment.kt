@@ -27,12 +27,12 @@ class Finance2Fragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view=inflater.inflate(R.layout.fragment_finance2, container, false)
-        showHistory = view.findViewById(R.id.transactionHistory)
+        showHistory = view.findViewById(R.id.btnAllTransactions)
         todaytransaction = view.findViewById(R.id.transactionToday)
         addMultipleCard = view.findViewById(R.id.transactionAddMultiple)
 
         showHistory.setOnClickListener {
-            val historyFragment = PreviousTransactionFragment()
+            val historyFragment = PreviousTransactionFragment(requireActivity())
             requireActivity().supportFragmentManager.beginTransaction()
                 .addToBackStack("$historyFragment").apply {
                     replace(R.id.content, historyFragment).commit()
